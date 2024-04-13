@@ -16,5 +16,3 @@ class RequestsCategory(Enum):
     DATABASE = "database"
 
 
-class AllowSubCategory(Enum):
-    pass
