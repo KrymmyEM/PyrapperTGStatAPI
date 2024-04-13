@@ -68,3 +68,14 @@ class DatabaseRequests(Enum):
     CATEGORIES = ("categories", RequestsMethods.GET)
     COUNTRIES = ("countries", RequestsMethods.GET)
     LANGUAGES = ("languages", RequestsMethods.GET)
+
+
+class MediaTypes(Enum):
+    MEDIA_PHOTO = "mediaPhoto"
+    MEDIA_DOCUMENT = "mediaDocument"
+    MEDIA_GEO = "mediaGeo"
+    MEDIA_GEO_LIVE = "mediaGeoLive"
+    MEDIA_VENUE = "mediaVenue"
+    MEDIA_CONTACT = "mediaContact"
+    MEDIA_GAME = "mediaGame"
+    MEDIA_INVOICE = "mediaInvoice"
