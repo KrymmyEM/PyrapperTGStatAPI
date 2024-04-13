@@ -20,7 +20,10 @@ class Channel:
 
 class Media:
     def __init__(self, media_type, **kwargs):
-        pass
+        self.media_type = media_type
+        # kwargs содержит дополнительные аргументы, которые могут быть переданы
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
 
 class Story:
