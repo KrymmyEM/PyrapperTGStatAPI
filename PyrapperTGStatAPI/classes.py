@@ -40,5 +40,9 @@ class Post:
 
 
 class CallbackNotify:
-    def __init__(self, ):
+    def __init__(
+        self, subscription_id,
+        subscription_type, event_id,
+        event_type, **kwargs
+    ):
         passs
