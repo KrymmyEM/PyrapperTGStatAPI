@@ -7,7 +7,13 @@ class RequestsMethods(Enum):
 
 
 class RequestsCategory(Enum):
-    pass
+    CHANNELS = "channels"
+    POSTS = "posts"
+    STORIES = "stories"
+    WORDS = "words"
+    CALLBACK = "callback"
+    USAGE = "usage"
+    DATABASE = "database"
 
 
 class AllowSubCategory(Enum):
