@@ -55,7 +55,7 @@ class User:
         self.lastname = lastname
 
 
-class Mentions:
+class Mention:
     def __init__(self, mentionId, mentionType, postId, postLink, postDate, channelId):
         pass
 
