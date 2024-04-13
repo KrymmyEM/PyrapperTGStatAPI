@@ -120,4 +120,9 @@ class DatabaseEntity:
 
 class MassiveResult:
     def __init__(self, result_type, count = None, total_count = None, channel = None, items = None, channels = None):
-        pass
+        self.result_type = result_type
+        self.count = count
+        self.total_count = total_count
+        self.channel = channel
+        self.items = items
+        self.channels = channels
