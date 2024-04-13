@@ -13,3 +13,15 @@ class TGStatSync():
     def __init__(self, token):
         self.token = token
         self.session = Session()
+
+        
+    def _send_request(self, method, url, data, **kwargs):
+        pass
+    
+    
+    def _build_result(self, data, category):
+        pass
+
+
+    def api(self, category, sub_category, **kwargs):
+        pass
