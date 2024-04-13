@@ -19,11 +19,14 @@ class TGStatSync():
     def _send_request(self, method: RequestsMethods, url: str, **kwargs):
         kwargs["token"] = self.token
         response = self.session.request(method=method.value, url=url, params=kwargs)
-        return response
+        return response.json()
     
     
     def _build_result(self, data, category):
-        pass
+        if data['status'] == "error":
+            raise Exception(data["error"])
+        
+        return data["response"]
 
 
     def api(self, category: RequestsCategory, 
