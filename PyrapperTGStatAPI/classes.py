@@ -28,7 +28,7 @@ class Story:
         self, id, date, views, link,
         channel_id, is_expired, expire_at,
         caption, media
-    ):
+        ):
         self.id = id
         self.date = date
         self.views = views
@@ -44,7 +44,7 @@ class User:
     def __init__(
         self, id, tg_id, username, 
         firstname, lastname
-    ):
+        ):
         self.id = id
         self.tg_id = tg_id
         self.username = username
@@ -58,7 +58,7 @@ class Post:
             channel_id, forwarded_from, 
             user_id, is_deleted, deleted_at, 
             group_id, text, snippet, media,
-    ):
+        ):
         self.id = id
         self.date = date
         self.views = views
@@ -79,7 +79,7 @@ class CallbackNotify:
         self, subscription_id,
         subscription_type, event_id,
         event_type, **kwargs
-    ):
+        ):
         self.subscription_id = subscription_id
         self.subscription_type = subscription_type
         self.event_id = event_id
