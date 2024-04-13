@@ -4,7 +4,18 @@ class Channel:
             self, id, tg_id, link, peer_type, username, active_usernames,
             title, about, image100, image640, participants_count, tgstat_restrictions
         ):
-        pass
+        self.id = id
+        self.tg_id = tg_id
+        self.link = link
+        self.peer_type = peer_type
+        self.username = username
+        self.active_usernames = active_usernames
+        self.title = title
+        self.about = about
+        self.image100 = image100
+        self.image640 = image640
+        self.participants_count = participants_count
+        self.tgstat_restrictions = tgstat_restrictions
 
 
 class Media:
@@ -45,4 +56,4 @@ class CallbackNotify:
         subscription_type, event_id,
         event_type, **kwargs
     ):
-        passs
+        pass
