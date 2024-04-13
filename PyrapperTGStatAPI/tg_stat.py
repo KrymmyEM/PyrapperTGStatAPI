@@ -17,7 +17,9 @@ class TGStatSync():
 
         
     def _send_request(self, method: RequestsMethods, url: str, **kwargs):
-        pass
+        kwargs["token"] = self.token
+        response = self.session.request(method=method.value, url=url, params=kwargs)
+        return response
     
     
     def _build_result(self, data, category):
