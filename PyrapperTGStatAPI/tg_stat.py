@@ -26,14 +26,37 @@ class TGStatSync:
         return response.json()
     
     
-    def _build_result(self, data, category, sub_category):
+    def _check_catgory(self, category, sub_category):
+        if not isinstance(category, RequestsCategory):
+            raise TGStatTypeError(type(category), type(RequestsCategory), category._name_)
+        
+        if not type(sub_category) in [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
+                                        CallbackRequests, UsageRequests, DatabaseRequests]:
+            raise TGStatTypeError(type(category), [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
+                                        CallbackRequests, UsageRequests, DatabaseRequests], sub_category._name_)
+        
+        return True
+
+    
+    def _build_result(self, data, category: RequestsCategory, sub_category: Optional[
+                    ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
+                    CallbackRequests, UsageRequests, DatabaseRequests
+                ]):
+        self._check_catgory(category, sub_category)
+
         if data['status'] == "error":
             raise TGStatAPIError(data["error"])
         
         return data["response"]
 
 
-    def get_result(self, data, category, sub_category):
+    def get_result(self, data, category: RequestsCategory, sub_category: Optional[
+                    ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
+                    CallbackRequests, UsageRequests, DatabaseRequests
+                ]):
+                
+        self._check_catgory(category, sub_category)
+
         return self._build_result(data, category, sub_category)
 
 
@@ -44,13 +67,7 @@ class TGStatSync:
                 ], 
             **kwargs):
 
-        if not isinstance(category, RequestsCategory):
-            raise TGStatTypeError(type(category), type(RequestsCategory), category._name_)
-        
-        if not type(sub_category) in [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
-                                        CallbackRequests, UsageRequests, DatabaseRequests]:
-            raise TGStatTypeError(type(category), [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
-                                        CallbackRequests, UsageRequests, DatabaseRequests], sub_category._name_)
+        self._check_catgory(category, sub_category)
 
         first_postfix = category.value
         last_postfix, method = sub_category.value
