@@ -1,3 +1,5 @@
+from .enums import DatabaseTypes, ResultsType
+
 
 class Channel:
     def __init__(
@@ -112,14 +114,14 @@ class CallbackNotify:
 
 
 class DatabaseEntity:
-    def __init__(self, database_type, code, name):
+    def __init__(self, database_type: DatabaseTypes, code, name):
         self.database_type = database_type
         self.code = code
         self.name = name
 
 
 class MassiveResult:
-    def __init__(self, result_type, count = None, total_count = None, channel = None, items = None, channels = None):
+    def __init__(self, result_type: ResultsType, count = None, total_count = None, channel = None, items = None, channels = None):
         self.result_type = result_type
         self.count = count
         self.total_count = total_count
