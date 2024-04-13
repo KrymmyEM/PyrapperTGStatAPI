@@ -32,6 +32,8 @@ class TGStatSync():
         
         return data["response"]
 
+    def get_result(self, data, category, sub_category):
+        return self._build_result(data, category)
 
     def api(self, category: RequestsCategory, 
             sub_category: Optional[
