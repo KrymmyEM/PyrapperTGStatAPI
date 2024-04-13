@@ -13,7 +13,11 @@ class Media:
 
 
 class Story:
-    def __init__(self, ):
+    def __init__(
+        self, id, date, views, link,
+        channel_id, is_expired, expire_at,
+        caption, media
+    ):
         pass
 
 
