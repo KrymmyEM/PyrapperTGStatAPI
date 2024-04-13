@@ -54,12 +54,24 @@ class User:
 
 class Post:
     def __init__(
-        self, id, date, views, link,
-        channel_id, forwarded_from, 
-        user_id, is_deleted, deleted_at, 
-        group_id, text, snippet, media,
-    ):
-        pass
+            self, id, date, views, link,
+            channel_id, forwarded_from, 
+            user_id, is_deleted, deleted_at, 
+            group_id, text, snippet, media,
+        ):
+        self.id = id
+        self.date = date
+        self.views = views
+        self.link = link
+        self.channel_id = channel_id
+        self.forwarded_from = forwarded_from
+        self.user_id = user_id
+        self.is_deleted = is_deleted
+        self.deleted_at = deleted_at
+        self.group_id = group_id
+        self.text = text
+        self.snippet = snippet
+        self.media = media
 
 
 class CallbackNotify:
