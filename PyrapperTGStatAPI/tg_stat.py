@@ -30,4 +30,13 @@ class TGStatSync():
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ], 
             **kwargs):
-        pass
+
+        if not isinstance(category, RequestsCategory):
+            raise Exception("Exx")
+        
+        if not type(sub_category) in [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
+                                        CallbackRequests, UsageRequests, DatabaseRequests]:
+            raise Exception("Exx 2")
+
+        first_postfix = category.value
+        last_postfix, method = sub_category.value
