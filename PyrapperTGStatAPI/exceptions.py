@@ -6,9 +6,8 @@ class TGStatException(Exception):
 
 class TGStatTypeError(TGStatException):
     def __init__(self, get_type, need_type, var_name):
-            
-            self.message = f"The resulting type {get_type} does not match the type {need_type} in variable {var_name}"
-            super().__init__(message)
+        self.message = f"The resulting type {get_type} does not match the type {need_type} in variable {var_name}"
+        super().__init__(message)
 
 
 class TGStatAPIError(TGStatException):
