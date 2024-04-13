@@ -59,8 +59,7 @@ class Mention:
     def __init__(self, mentionId, mentionType, postId, postLink, postDate, channelId):
         pass
 
-
-class Forwards:
+class Forward:
     def __inint__(self, forwardId, sourcePostId, postId, postLink, postLink, channelId):
         pass
 
