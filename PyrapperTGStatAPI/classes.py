@@ -30,7 +30,12 @@ class User:
 
 
 class Post:
-    def __init__(self, ):
+    def __init__(
+        self, id, date, views, link,
+        channel_id, forwarded_from, 
+        user_id, is_deleted, deleted_at, 
+        group_id, text, snippet, media,
+    ):
         pass
 
 
