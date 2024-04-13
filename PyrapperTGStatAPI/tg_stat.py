@@ -1,5 +1,5 @@
 from requests import Request, Session
-import aiohttp
+from aiohttp import ClientSession
 
 from .enums import *
 from .classes import *
@@ -11,4 +11,3 @@ class TGStatSync(Session):
     def __init__(self, token):
         super().__init__()
         self.token = token
-        
