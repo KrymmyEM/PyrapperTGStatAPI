@@ -90,3 +90,10 @@ class CallbackNotify:
         # kwargs содержит дополнительные аргументы, которые могут быть переданы
         for key, value in kwargs.items():
             setattr(self, key, value)
+
+
+class DatabaseEntity:
+    def __init__(self, database_type, code, name):
+        self.database_type = database_type
+        self.code = code
+        self.name = name
