@@ -105,12 +105,13 @@ class Mention:
 
 
 class Forward:
-    def __inint__(self, forwardId, sourcePostId, postId, postLink, postLink, channelId):
+    def __inint__(self, forwardId, sourcePostId, postId, postLink, postLink, channelId, peerType=None):
         self.forwardId = forwardId
         self.sourcePostId = sourcePostId
         self.postId = postId
         self.postLink = postLink
         self.channelId = channelId
+        self.peerType = peerType
 
 
 class Post:
