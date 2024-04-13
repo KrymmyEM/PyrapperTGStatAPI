@@ -26,14 +26,14 @@ class TGStatSync():
         return response.json()
     
     
-    def _build_result(self, data, category):
+    def _build_result(self, data, category, sub_category):
         if data['status'] == "error":
             raise TGStatAPIError(data["error"])
         
         return data["response"]
 
     def get_result(self, data, category, sub_category):
-        return self._build_result(data, category)
+        return self._build_result(data, category, sub_category)
 
     def api(self, category: RequestsCategory, 
             sub_category: Optional[
