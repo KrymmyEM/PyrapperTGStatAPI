@@ -31,3 +31,10 @@ class ChannelsRequests(Enum):
     ERR = ("err", RequestsMethods.GET)
     ERR24 = ("err24", RequestsMethods.GET)
     ADD = ("add", RequestsMethods.POST)
+
+
+class PostsRequests(Enum):
+    GET = ("get", RequestsMethods.GET)
+    STAT = ("stat", RequestsMethods.GET)
+    STAT_MULTI = ("stat-multi", RequestsMethods.GET)
+    SEARCH = ("search", RequestsMethods.GET)
