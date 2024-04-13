@@ -24,7 +24,7 @@ class TGStatSync():
     
     def _build_result(self, data, category):
         if data['status'] == "error":
-            raise Exception(data["error"])
+            raise TGStatAPIError(data["error"])
         
         return data["response"]
 
