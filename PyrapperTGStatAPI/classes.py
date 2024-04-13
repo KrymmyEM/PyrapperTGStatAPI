@@ -7,12 +7,12 @@ class Channel:
         pass
 
 
-class Story:
+class Media:
     def __init__(self, ):
         pass
 
 
-class Media:
+class Story:
     def __init__(self, ):
         pass
 
