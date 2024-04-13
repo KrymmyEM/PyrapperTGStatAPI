@@ -11,12 +11,13 @@ class TGStatSync():
 
     base_url = "https://api.tgstat.ru"
     
-    def __init__(self, token):
+    def __init__(self, token, **kwargs):
         self.token = token
         self.session = Session()
-        result = self.session.get(self.base_url + "/usage/stat", param={"token":token}).json()
-        if data['status'] == "error":
-            raise TGStatAuthError(data["error"])
+        if not kwargs.get("tests", False):
+            result = self.session.get(self.base_url + "/usage/stat", param={"token":token}).json()
+            if data['status'] == "error":
+                raise TGStatAuthError(data["error"])
             
         
     def _send_request(self, method: RequestsMethods, url: str, **kwargs):
