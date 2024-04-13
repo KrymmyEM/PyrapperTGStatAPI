@@ -22,10 +22,10 @@ class TGStatSyncTest(unittest.TestCase):
         self.assertIsInstance(countries, classes.DatabaseEntity, "Database not return DatabaseEntity in countries")
         self.assertIsInstance(languages, classes.DatabaseEntity, "Database not return DatabaseEntity in languages")
 
-        self.assertEqual(categories.database_type, enums.DatabaseTypes.CATEGORIES, "Not correct db type in category")
-        self.assertEqual(categories.database_type, enums.DatabaseTypes.COUNTRIES, "Not correct db type in countries")
-        self.assertEqual(categories.database_type, enums.DatabaseTypes.LANGUAGES, "Not correct db type in languages")
-        
+        self.assertEqual(categories.database_type, enums.DatabaseTypes.CATEGORIES, f"Not correct db type in category : {categories.database_type}")
+        self.assertEqual(countries.database_type, enums.DatabaseTypes.COUNTRIES, f"Not correct db type in countries : {countries.database_type}")
+        self.assertEqual(languages.database_type, enums.DatabaseTypes.LANGUAGES, f"Not correct db type in languages : {languages.database_type}")
+
     
     def test_get_channel_info(self):
         tgs = tg_stat.TGStatSync(environ.get("TOKEN"))
