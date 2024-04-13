@@ -20,6 +20,39 @@ class Channel:
         self.tgstat_restrictions = tgstat_restrictions
 
 
+class ChannelStatistic:
+    def __init__(self, data):
+        self.id = data['response'].get('id')
+        self.title = data['response'].get('title')
+        self.username = data['response'].get('username')
+        self.peer_type = data['response'].get('peer_type')
+        self.participants_count = data['response'].get('participants_count')
+        self.avg_post_reach = data['response'].get('avg_post_reach')
+        self.adv_post_reach_12h = data['response'].get('adv_post_reach_12h')
+        self.adv_post_reach_24h = data['response'].get('adv_post_reach_24h')
+        self.adv_post_reach_48h = data['response'].get('adv_post_reach_48h')
+        self.err_percent = data['response'].get('err_percent')
+        self.err24_percent = data['response'].get('err24_percent')
+        self.er_percent = data['response'].get('er_percent')
+        self.daily_reach = data['response'].get('daily_reach')
+        self.ci_index = data['response'].get('ci_index')
+        self.mentions_count = data['response'].get('mentions_count')
+        self.forwards_count = data['response'].get('forwards_count')
+        self.mentioning_channels_count = data['response'].get('mentioning_channels_count')
+        self.posts_count = data['response'].get('posts_count')
+        
+        self.dau = data['response'].get('dau')
+        self.wau = data['response'].get('wau')
+        self.mau = data['response'].get('mau')
+        self.online_count_day_time = data['response'].get('online_count_day_time')
+        self.online_count_night_time = data['response'].get('online_count_night_time')
+        self.messages_count_yesterday = data['response'].get('messages_count_yesterday')
+        self.messages_count_last_week = data['response'].get('messages_count_last_week')
+        self.messages_count_last_month = data['response'].get('messages_count_last_month')
+        self.messages_count_total = data['response'].get('messages_count_total')
+
+
+
 class Media:
     def __init__(self, media_type, **kwargs):
         self.media_type = media_type
