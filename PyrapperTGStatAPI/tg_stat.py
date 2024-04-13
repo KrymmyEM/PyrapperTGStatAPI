@@ -16,7 +16,7 @@ class TGStatSync():
         self.session = Session()
         result = self.session.get(self.base_url + "/usage/stat", param={"token":token}).json()
         if data['status'] == "error":
-            raise TGStatAPIError(data["error"])
+            raise TGStatAuthError(data["error"])
             
         
     def _send_request(self, method: RequestsMethods, url: str, **kwargs):
