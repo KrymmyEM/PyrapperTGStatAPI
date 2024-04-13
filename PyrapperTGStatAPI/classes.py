@@ -22,7 +22,10 @@ class Story:
 
 
 class User:
-    def __init__(self, ):
+    def __init__(
+        self, id, tg_id, username, 
+        firstname, lastname
+    ):
         pass
 
 
