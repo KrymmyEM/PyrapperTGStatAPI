@@ -16,3 +16,18 @@ class RequestsCategory(Enum):
     DATABASE = "database"
 
 
+class ChannelsRequests(Enum):
+    GET = ("get", RequestsMethods.GET)
+    SEARCH = ("search", RequestsMethods.GET)
+    STAT = ("stat", RequestsMethods.GET)
+    POSTS = ("posts", RequestsMethods.GET)
+    STORIES = ("stories", RequestsMethods.GET)
+    MENTIONS = ("mentions", RequestsMethods.GET)
+    FORWARDS = ("forwards", RequestsMethods.GET)
+    SUBSCRIBERS = ("subscribers", RequestsMethods.GET)
+    VIEWS = ("views", RequestsMethods.GET)
+    AVG_POSTS_REACH = ("avg-posts-reach", RequestsMethods.GET)
+    ER = ("er", RequestsMethods.GET)
+    ERR = ("err", RequestsMethods.GET)
+    ERR24 = ("err24", RequestsMethods.GET)
+    ADD = ("add", RequestsMethods.POST)
