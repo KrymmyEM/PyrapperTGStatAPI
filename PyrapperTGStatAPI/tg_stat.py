@@ -6,11 +6,10 @@ from .classes import *
 from .exceptions import * 
 
 
-class TGStatSync(Session):
+class TGStatSync():
 
     base_url = "https://api.tgstat.ru"
     
     def __init__(self, token):
-        super().__init__()
         self.token = token
-        
+        self.session = Session()
