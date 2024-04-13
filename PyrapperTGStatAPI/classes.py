@@ -21,36 +21,40 @@ class Channel:
 
 
 class ChannelStatistic:
-    def __init__(self, data):
-        self.id = data['response'].get('id')
-        self.title = data['response'].get('title')
-        self.username = data['response'].get('username')
-        self.peer_type = data['response'].get('peer_type')
-        self.participants_count = data['response'].get('participants_count')
-        self.avg_post_reach = data['response'].get('avg_post_reach')
-        self.adv_post_reach_12h = data['response'].get('adv_post_reach_12h')
-        self.adv_post_reach_24h = data['response'].get('adv_post_reach_24h')
-        self.adv_post_reach_48h = data['response'].get('adv_post_reach_48h')
-        self.err_percent = data['response'].get('err_percent')
-        self.err24_percent = data['response'].get('err24_percent')
-        self.er_percent = data['response'].get('er_percent')
-        self.daily_reach = data['response'].get('daily_reach')
-        self.ci_index = data['response'].get('ci_index')
-        self.mentions_count = data['response'].get('mentions_count')
-        self.forwards_count = data['response'].get('forwards_count')
-        self.mentioning_channels_count = data['response'].get('mentioning_channels_count')
-        self.posts_count = data['response'].get('posts_count')
-        
-        self.dau = data['response'].get('dau')
-        self.wau = data['response'].get('wau')
-        self.mau = data['response'].get('mau')
-        self.online_count_day_time = data['response'].get('online_count_day_time')
-        self.online_count_night_time = data['response'].get('online_count_night_time')
-        self.messages_count_yesterday = data['response'].get('messages_count_yesterday')
-        self.messages_count_last_week = data['response'].get('messages_count_last_week')
-        self.messages_count_last_month = data['response'].get('messages_count_last_month')
-        self.messages_count_total = data['response'].get('messages_count_total')
-
+    def __init__(self, id=None, title=None, username=None, peer_type=None, participants_count=None,
+                 avg_post_reach=None, adv_post_reach_12h=None, adv_post_reach_24h=None, adv_post_reach_48h=None,
+                 err_percent=None, err24_percent=None, er_percent=None, daily_reach=None, ci_index=None,
+                 mentions_count=None, forwards_count=None, mentioning_channels_count=None, posts_count=None,
+                 dau=None, wau=None, mau=None, online_count_day_time=None, online_count_night_time=None,
+                 messages_count_yesterday=None, messages_count_last_week=None, messages_count_last_month=None,
+                 messages_count_total=None):
+        self.id = id
+        self.title = title
+        self.username = username
+        self.peer_type = peer_type
+        self.participants_count = participants_count
+        self.avg_post_reach = avg_post_reach
+        self.adv_post_reach_12h = adv_post_reach_12h
+        self.adv_post_reach_24h = adv_post_reach_24h
+        self.adv_post_reach_48h = adv_post_reach_48h
+        self.err_percent = err_percent
+        self.err24_percent = err24_percent
+        self.er_percent = er_percent
+        self.daily_reach = daily_reach
+        self.ci_index = ci_index
+        self.mentions_count = mentions_count
+        self.forwards_count = forwards_count
+        self.mentioning_channels_count = mentioning_channels_count
+        self.posts_count = posts_count
+        self.dau = dau
+        self.wau = wau
+        self.mau = mau
+        self.online_count_day_time = online_count_day_time
+        self.online_count_night_time = online_count_night_time
+        self.messages_count_yesterday = messages_count_yesterday
+        self.messages_count_last_week = messages_count_last_week
+        self.messages_count_last_month = messages_count_last_month
+        self.messages_count_total = messages_count_total
 
 
 class Media:
