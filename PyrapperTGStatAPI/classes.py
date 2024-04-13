@@ -21,7 +21,7 @@ class Channel:
 
 
 class ChannelStatistic:
-    def __init__(self, id=None, title=None, username=None, peer_type=None, participants_count=None,
+    def __init__(self, id, title, username, peer_type, participants_count,
                  avg_post_reach=None, adv_post_reach_12h=None, adv_post_reach_24h=None, adv_post_reach_48h=None,
                  err_percent=None, err24_percent=None, er_percent=None, daily_reach=None, ci_index=None,
                  mentions_count=None, forwards_count=None, mentioning_channels_count=None, posts_count=None,
