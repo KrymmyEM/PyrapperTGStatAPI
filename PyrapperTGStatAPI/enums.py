@@ -38,3 +38,9 @@ class PostsRequests(Enum):
     STAT = ("stat", RequestsMethods.GET)
     STAT_MULTI = ("stat-multi", RequestsMethods.GET)
     SEARCH = ("search", RequestsMethods.GET)
+
+
+class StoriesRequests(Enum):
+    GET = ("get", RequestsMethods.GET)
+    STAT = ("stat", RequestsMethods.GET)
+    STAT_MULTI = ("stat-multi", RequestsMethods.GET)
