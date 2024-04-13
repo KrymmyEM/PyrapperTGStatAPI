@@ -8,7 +8,7 @@ class Channel:
 
 
 class Media:
-    def __init__(self, ):
+    def __init__(self, media_type, **kwargs):
         pass
 
 
