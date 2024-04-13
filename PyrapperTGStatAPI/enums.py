@@ -94,3 +94,11 @@ class DynamicType(Enum):
     ER = 4
     ERR = 5
     ERR24 = 6
+
+
+class ResultsType(Enum):
+    POST = 1
+    STORIES = 2
+    MENTIONS = 3
+    FORWARDS = 4
+    
