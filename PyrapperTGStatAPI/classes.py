@@ -79,7 +79,9 @@ class Story:
         self.is_expired = is_expired
         self.expire_at = expire_at
         self.caption = caption
-        self.media = media
+        self.media = None
+        if media:
+            self.media = Media(**media)
 
 
 class User:
