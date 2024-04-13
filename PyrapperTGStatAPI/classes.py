@@ -29,7 +29,15 @@ class Story:
         channel_id, is_expired, expire_at,
         caption, media
     ):
-        pass
+        self.id = id
+        self.date = date
+        self.views = views
+        self.link = link
+        self.channel_id = channel_id
+        self.is_expired = is_expired
+        self.expire_at = expire_at
+        self.caption = caption
+        self.media = media
 
 
 class User:
