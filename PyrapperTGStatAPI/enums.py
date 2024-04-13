@@ -49,3 +49,12 @@ class StoriesRequests(Enum):
 class WordsRequests(Enum):
     MENTIONS_BY_PERIOD = ("mentions-by-period", RequestsMethods.GET)
     MENTIONS_BY_CHANNELS = ("mentions-by-channels", RequestsMethods.GET)
+
+
+class CallbackRequests(Enum):
+    SET_CALLBACK_URL = ("set-callback-url", RequestsMethods.POST)
+    GET_CALLBACK_INFO = ("get-callback-info", RequestsMethods.GET)
+    SUBSCRIBE_CHANNEL = ("subscribe-channel", RequestsMethods.POST)
+    SUBSCRIBE_WORD = ("subscribe-word", RequestsMethods.POST)
+    SUBSCRIPTIONS_LIST = ("subscriptions-list", RequestsMethods.GET)
+    UNSUBSCRIBE = ("unsubscribe", RequestsMethods.POST)
