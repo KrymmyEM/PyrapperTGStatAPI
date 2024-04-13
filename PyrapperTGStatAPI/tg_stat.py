@@ -16,7 +16,7 @@ class TGStatSync():
         self.session = Session()
 
         
-    def _send_request(self, method: RequestsMethods, url: str, data, **kwargs):
+    def _send_request(self, method: RequestsMethods, url: str, **kwargs):
         pass
     
     
@@ -41,3 +41,10 @@ class TGStatSync():
 
         first_postfix = category.value
         last_postfix, method = sub_category.value
+        sending_url = self.base_url + "/" + first_postfix + "/" + last_postfix
+        response = self._send_request(method, sending_url, **kwargs)
+        result = self._build_result(response, category)
+
+        return result
+
+
