@@ -82,9 +82,9 @@ class MediaTypes(Enum):
 
 
 class DatabaseTypes(Enum):
-    categories = "categories"
-    countries = "countries"
-    languages = "languages"
+    CATEGORIES = "categories"
+    COUNTRIES = "countries"
+    LANGUAGES = "languages"
 
 
 class DynamicType(Enum):
