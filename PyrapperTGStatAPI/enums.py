@@ -44,3 +44,8 @@ class StoriesRequests(Enum):
     GET = ("get", RequestsMethods.GET)
     STAT = ("stat", RequestsMethods.GET)
     STAT_MULTI = ("stat-multi", RequestsMethods.GET)
+
+
+class WordsRequests(Enum):
+    MENTIONS_BY_PERIOD = ("mentions-by-period", RequestsMethods.GET)
+    MENTIONS_BY_CHANNELS = ("mentions-by-channels", RequestsMethods.GET)
