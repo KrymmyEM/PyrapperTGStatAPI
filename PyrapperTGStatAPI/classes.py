@@ -58,7 +58,7 @@ class Post:
             channel_id, forwarded_from, 
             user_id, is_deleted, deleted_at, 
             group_id, text, snippet, media,
-        ):
+    ):
         self.id = id
         self.date = date
         self.views = views
@@ -80,4 +80,10 @@ class CallbackNotify:
         subscription_type, event_id,
         event_type, **kwargs
     ):
-        pass
+        self.subscription_id = subscription_id
+        self.subscription_type = subscription_type
+        self.event_id = event_id
+        self.event_type = event_type
+        # kwargs содержит дополнительные аргументы, которые могут быть переданы
+        for key, value in kwargs.items():
+            setattr(self, key, value)
