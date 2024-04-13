@@ -136,6 +136,34 @@ class Post:
         self.media = media
 
 
+class PostStatistic:
+    def __init__(self, postId, viewsCount, sharesCount, commentsCount, reactionsCount):
+        self.postId = postId
+        self.viewsCount = viewsCount
+        self.sharesCount = sharesCount
+        self.commentsCount = commentsCount
+        self.reactionsCount = reactionsCount
+
+
+class View:
+    def __init__(self, date, viewsGrowth):
+        self.date = date
+        self.viewsGrowth = viewsGrowth
+
+
+class PostGroupStatistic:
+    def __init__(self, viewsCount, sharesCount, commentsCount, reactionsCount, forwardsCount, mentionsCount, forwards, mentions, views):
+        self.viewsCount = viewsCount
+        self.sharesCount = sharesCount
+        self.commentsCount = commentsCount
+        self.reactionsCount = reactionsCount
+        self.forwardsCount = forwardsCount
+        self.mentionsCount = mentionsCount
+        self.forwards = [Forward(**fwd) for fwd in forwards]
+        self.mentions = [Mention(**mention) for mention in mentions]
+        self.views = [View(**view) for view in views]
+
+
 class CallbackNotify:
     def __init__(
         self, subscription_id,
