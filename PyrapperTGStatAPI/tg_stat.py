@@ -38,7 +38,7 @@ class TGStatSync:
         return True
 
     
-    def _build_result(self, data, category: RequestsCategory, sub_category: Optional[
+    def _build_result(self, data, sub_category: Optional[
                     ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ]):
@@ -47,10 +47,12 @@ class TGStatSync:
         if data['status'] == "error":
             raise TGStatAPIError(data["error"])
         
+
+        
         return data["response"]
 
 
-    def get_result(self, data, category: RequestsCategory, sub_category: Optional[
+    def get_result(self, data, sub_category: Optional[
                     ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ]):
