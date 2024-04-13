@@ -1,3 +1,4 @@
+from typing import Optional
 from requests import Request, Session
 from aiohttp import ClientSession
 
@@ -15,7 +16,7 @@ class TGStatSync():
         self.session = Session()
 
         
-    def _send_request(self, method, url, data, **kwargs):
+    def _send_request(self, method: RequestsMethods, url: str, data, **kwargs):
         pass
     
     
@@ -23,5 +24,10 @@ class TGStatSync():
         pass
 
 
-    def api(self, category, sub_category, **kwargs):
+    def api(self, category: RequestsCategory, 
+            sub_category: Optional[
+                    ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
+                    CallbackRequests, UsageRequests, DatabaseRequests
+                ], 
+            **kwargs):
         pass
