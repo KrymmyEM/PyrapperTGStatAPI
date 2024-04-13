@@ -7,7 +7,7 @@ from .classes import *
 from .exceptions import * 
 
 
-class TGStatSync():
+class TGStatSync:
 
     base_url = "https://api.tgstat.ru"
     
@@ -32,8 +32,10 @@ class TGStatSync():
         
         return data["response"]
 
+
     def get_result(self, data, category, sub_category):
         return self._build_result(data, category, sub_category)
+
 
     def api(self, category: RequestsCategory, 
             sub_category: Optional[
