@@ -85,3 +85,12 @@ class DatabaseTypes(Enum):
     categories = "categories"
     countries = "countries"
     languages = "languages"
+
+
+class DynamicType(Enum):
+    SUBSCRIBERS = 1
+    VIEWS = 2
+    AVG_POSTS_REACH = 3
+    ER = 4
+    ERR = 5
+    ERR24 = 6
