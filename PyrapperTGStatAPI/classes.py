@@ -57,7 +57,12 @@ class User:
 
 class Mention:
     def __init__(self, mentionId, mentionType, postId, postLink, postDate, channelId):
-        pass
+        self.mentionId = mentionId
+        self.mentionType = mentionType
+        self.postId = postId
+        self.postLink = postLink
+        self.postDate = postDate
+        self.channelId = channelId
 
 class Forward:
     def __inint__(self, forwardId, sourcePostId, postId, postLink, postLink, channelId):
