@@ -60,6 +60,11 @@ class Mentions:
         pass
 
 
+class Forwards:
+    def __inint__(self, forwardId, sourcePostId, postId, postLink, postLink, channelId):
+        pass
+
+
 class Post:
     def __init__(
             self, id, date, views, link,
