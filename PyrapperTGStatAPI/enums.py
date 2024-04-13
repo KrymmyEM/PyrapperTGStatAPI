@@ -79,3 +79,9 @@ class MediaTypes(Enum):
     MEDIA_CONTACT = "mediaContact"
     MEDIA_GAME = "mediaGame"
     MEDIA_INVOICE = "mediaInvoice"
+
+
+class DatabaseTypes(Enum):
+    categories = "categories"
+    countries = "countries"
+    languages = "languages"
