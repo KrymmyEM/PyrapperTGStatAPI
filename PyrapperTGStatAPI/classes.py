@@ -126,14 +126,18 @@ class Post:
         self.views = views
         self.link = link
         self.channel_id = channel_id
-        self.forwarded_from = forwarded_from
+        self.forwarded_from = None
+        if forwarded_from:
+            self.forwarded_from = Forward(**forwarded_from)
         self.user_id = user_id
         self.is_deleted = is_deleted
         self.deleted_at = deleted_at
         self.group_id = group_id
         self.text = text
         self.snippet = snippet
-        self.media = media
+        self.media = None
+        if media:
+            self.media = Media(**media)
 
 
 class PostStatistic:
@@ -189,8 +193,25 @@ class DatabaseEntity:
 class MassiveResult:
     def __init__(self, result_type: ResultsType, count = None, total_count = None, channel = None, items = None, channels = None):
         self.result_type = result_type
-        self.count = count
-        self.total_count = total_count
-        self.channel = channel
-        self.items = items
-        self.channels = channels
+        if count:
+            self.count = count
+        if total_count:
+            self.total_count = total_count
+        if channel:
+            self.channel = Channel(**channel)
+        
+        if items:
+            if ResultsType.POST:
+                self.items = [Post(**post) for post in items]
+
+            elif ResultsType.STORIES:
+                self.items = [Story(**story) for story in items]
+            
+            elif ResultsType.MENTIONS:
+                self.items = [Mention(**mention)]
+
+            elif ResultsType.FORWARDS:
+                self.items = [Forward(**fr)]
+
+        if channels:
+            self.channels = [Channel(**chan) for chan in channels]
