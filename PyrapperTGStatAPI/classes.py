@@ -97,3 +97,8 @@ class DatabaseEntity:
         self.database_type = database_type
         self.code = code
         self.name = name
+
+
+class MassiveResult:
+    def __init__(self, result_type, count = None, total_count = None, channel = None, items = None, channels = None):
+        pass
