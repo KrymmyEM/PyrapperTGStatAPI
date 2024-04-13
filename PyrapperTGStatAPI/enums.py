@@ -62,3 +62,9 @@ class CallbackRequests(Enum):
 
 class UsageRequests(Enums):
     STAT = ("stat", RequestsMethods.GET)
+
+
+class DatabaseRequests(Enum):
+    CATEGORIES = ("categories", RequestsMethods.GET)
+    COUNTRIES = ("countries", RequestsMethods.GET)
+    LANGUAGES = ("languages", RequestsMethods.GET)
