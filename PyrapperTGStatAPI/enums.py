@@ -58,3 +58,7 @@ class CallbackRequests(Enum):
     SUBSCRIBE_WORD = ("subscribe-word", RequestsMethods.POST)
     SUBSCRIPTIONS_LIST = ("subscriptions-list", RequestsMethods.GET)
     UNSUBSCRIBE = ("unsubscribe", RequestsMethods.POST)
+
+
+class UsageRequests(Enums):
+    STAT = ("stat", RequestsMethods.GET)
