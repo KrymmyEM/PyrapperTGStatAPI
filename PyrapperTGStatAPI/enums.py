@@ -2,7 +2,8 @@ from enum import Enum
 
 
 class RequestsMethods(Enum):
-    pass
+    GET = 1
+    POST = 2
 
 
 class RequestsCategory(Enum):
