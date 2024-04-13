@@ -45,7 +45,11 @@ class User:
         self, id, tg_id, username, 
         firstname, lastname
     ):
-        pass
+        self.id = id
+        self.tg_id = tg_id
+        self.username = username
+        self.firstname = firstname
+        self.lastname = lastname
 
 
 class Post:
