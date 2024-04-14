@@ -704,3 +704,90 @@ class TGStatSyncTest(unittest.TestCase):
         self.assertIsInstance(result, classes.UnionStatistic)
 
 
+    def test_mentions(self):
+        null = None
+        tgs = tg_stat.TGStatSync(environ.get("0000"), tests=True)
+        data = {
+            "status": "ok",
+            "response": {
+                "items": [
+                    {
+                        "period": "2018-11-04",
+                        "mentions_count": 11,
+                        "views_count": 6781
+                    },
+                    {
+                        "period": "2018-11-03",
+                        "mentions_count": 27,
+                        "views_count": 13097
+                    },
+                    {
+                        "period": "2018-11-02",
+                        "mentions_count": 38,
+                        "views_count": 19091
+                    },
+                ]
+            }
+        }
+        result = tgs.get_result(data, sub_category=enums.WordsRequests.MENTIONS_BY_PERIOD)
+        self.assertIsInstance(result[0], classes.DynamicData)
+
+        data = {
+            "status": "ok",
+            "response": {
+                "items": [
+                    {
+                        "channel_id": 74647,
+                        "mentions_count": 4544,
+                        "views_count": 78710,
+                        "last_mention_date": 1572539401
+                    },
+                    {
+                        "channel_id": 55422,
+                        "mentions_count": 1,
+                        "views_count": 900,
+                        "last_mention_date": 1572204557
+                    },
+                    {
+                        "channel_id": 63694,
+                        "mentions_count": 1,
+                        "views_count": 1053,
+                        "last_mention_date": 1570826223
+                    },
+                ],
+                "channels": [
+                    {
+                        "id": 74647,
+                        "link": "t.me/newchans",
+                        "username": "@newchans",
+                        "title": "Новые каналы",
+                        "about": "Здесь автоматически публикуются новые каналы, зарегистрированные в Telegram и попавшие в индекс TGStat.",
+                        "image100": "//static10.tgstat.ru/channels/_100/a8/a82c47f8c5d7d1259ee13ed84a4be346.jpg",
+                        "image640": "//static10.tgstat.ru/channels/_0/a8/a82c47f8c5d7d1259ee13ed84a4be346.jpg",
+                        "participants_count": 259
+                    },
+                    {
+                        "id": 55422,
+                        "link": "t.me/raskruti",
+                        "username": "@raskruti",
+                        "title": "Раскрути канал",
+                        "about": "Если вам нехрен делать - пишите сюда @neznayca \nА лучше не пишите, а то я добрый, добрый, а могу и на хер послать",
+                        "image100": "//static10.tgstat.ru/channels/_100/2e/2e72ed76b7b3b9ce2f15fce64178dfaf.jpg",
+                        "image640": "//static10.tgstat.ru/channels/_0/2e/2e72ed76b7b3b9ce2f15fce64178dfaf.jpg",
+                        "participants_count": 6521
+                    },
+                    {
+                        "id": 63694,
+                        "link": "t.me/pltrk",
+                        "username": "@pltrk",
+                        "title": "Политрук 2.0",
+                        "about": "Подкрепление? Ты и есть подкрепление.\n\nПоддержать: 4432 7300 1577 4617",
+                        "image100": "//static10.tgstat.ru/channels/_100/0c/0c3f40425314745073e174541ba5e6ad.jpg",
+                        "image640": "//static10.tgstat.ru/channels/_0/0c/0c3f40425314745073e174541ba5e6ad.jpg",
+                        "participants_count": 2823
+                    },
+                ]
+            }
+        }
+        result = tgs.get_result(data, sub_category=enums.PostsRequests.STAT)
+        self.assertIsInstance(result, classes.MassiveResult)
