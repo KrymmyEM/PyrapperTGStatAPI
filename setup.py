@@ -8,16 +8,16 @@ Copyright: (c) 2024 Evgeny
 
 version = "0.1.5"
 
-long_decription = ""
+long_description = ""
 
 with open("README.md", "r", encoding="utf-8") as f:
-    long_decription = f.read()
+    long_description = f.read()
 
 setup(
     name = "PyrapperTGStatAPI",
     version = version,
     description = "Wrapper for TG Stat API writing on Python\nTGStat (https://tgstat.ru API wrapper)",
-    long_decription = long_decription,
+    long_description = long_description,
 
     author = "Evgeny Momotov (KrymmyEM)",
     author_email = "evgeny.momotov@gmail.com",
