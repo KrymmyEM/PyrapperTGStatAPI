@@ -29,6 +29,7 @@ class TGStatSyncTest(unittest.TestCase):
     
     def test_get_channel_info(self):
         tgs = tg_stat.TGStatSync(environ.get("0000"), tests=True)
+        null = None
         data = {
             "status": "ok",
             "response": {
@@ -55,22 +56,399 @@ class TGStatSyncTest(unittest.TestCase):
         }
 
         result = tgs.get_result(data, enums.ChannelsRequests.GET)
-        self.assertIsInstance(dynamic_data, classes.Channel, "Channel result not a Channel type")
-    
+        self.assertIsInstance(result, classes.Channel, "Channel result not a Channel type")
+
+        data = {
+            "status": "ok",
+            "response": {
+                "count": 3,
+                "items": [
+                    {
+                        "id": 53248,
+                        "link": "t.me/tg_analytics",
+                        "peer_type": "channel",
+                        "username": "@tg_analytics",
+                        "title": "Telegram Analytics",
+                        "about": "Канал проекта Telegram Analytics. \nЗдесь будут появляться последние новости проекта https://tgstat.ru \n\nЧат: @tg_analytics_chat - вопросы, предложения, замечания - всё сюда.\nСтраница проекта в ВК: https://vk.com/tg_analytics",
+                        "image100": "//static10.tgstat.ru/channels/_100/1b/1ba75ef1c643f82ac4a09c7aa43bd3ff.jpg",
+                        "image640": "//static10.tgstat.ru/channels/_0/1b/1ba75ef1c643f82ac4a09c7aa43bd3ff.jpg",
+                        "participants_count": 21905
+                    },
+                    {
+                        "id": 123357,
+                        "link": "t.me/AnalyticsFree",
+                        "peer_type": "chat",
+                        "username": "@AnalyticsFree",
+                        "title": "Бесплатные разборы каналов Telegram",
+                        "about": "Я делаю разборы Telegram-каналов.\n\nЕсли вы хотите, чтоб я сделал разбор вашего канала напишите мне @LoikoR ссылку на ваш канал с меткой «на разбор».\n\nРазбираю все по пунктам и бесплатно.",
+                        "image100": "//static10.tgstat.ru/channels/_100/b6/b6a1d5de6e0101f3886464727fc6fb22.jpg",
+                        "image640": "//static10.tgstat.ru/channels/_0/b6/b6a1d5de6e0101f3886464727fc6fb22.jpg",
+                        "participants_count": 21
+                    },
+                    {
+                        "id": 798202,
+                        "link": "t.me/telega_analytics",
+                        "peer_type": "channel",
+                        "username": "@telega_analytics",
+                        "title": "Telegram Analytics",
+                        "about": "Привет, мы поможем тебе прокачать свой канал, разместим его на всех популярных сайтах рекламы телеграмм бесплатно, слишком много интересных идей которые никто не видит!",
+                        "image100": "//static10.tgstat.ru/channels/_100/32/322f3e36cdffba89c2168fd1244ca1ff.jpg",
+                        "image640": "//static10.tgstat.ru/channels/_0/32/322f3e36cdffba89c2168fd1244ca1ff.jpg",
+                        "participants_count": 3
+                    }
+                ]
+            }
+        }
+        result = tgs.get_result(data, enums.ChannelsRequests.SEARCH)
+        self.assertIsInstance(result, classes.MassiveResult, "Channel result not a Channel type")
+
+        data = {
+            "status": "ok",
+            "response": {
+                "id": 118,                           # Внутренний ID канала в TGStat
+                "title": "РИА Новости",              # Название канала
+                "username": "@rian_ru",              # Username канала
+                "peer_type": "channel",              # Тип (канал/чат)
+                "participants_count": 2048184,       # Количество подписчиков канала на момент запроса
+                "avg_post_reach": 541540,            # Средний охват публикации
+                "adv_post_reach_12h": 475712,        # Средний рекламный охват публикации за 12 часов
+                "adv_post_reach_24h": 554476,        # Средний рекламный охват публикации за 24 часа
+                "adv_post_reach_48h": 580952,        # Средний рекламный охват публикации за 48 часов
+                "err_percent": 26.4,                 # Процент вовлеченности подписчиков (ERR %)
+                "err24_percent": 25.2,               # Процент вовлеченности подписчиков в просмотр поста за первые 24 часа (ERR24 %)
+                "er_percent": 11.11,                 # Коэффициент вовлеченности подписчиков во взаимодействия с постом (реакция, пересылка, комментарий)        
+                "daily_reach": 35496444,             # Cуммарный дневной охват
+                "ci_index": 8737.68,                 # Индекс цитирования (ИЦ)
+                "mentions_count": 171477,            # Количество упоминаний канала в других каналах
+                "forwards_count": 472536,            # Количество репостов в другие каналы
+                "mentioning_channels_count": 18740,  # Количество каналов, упоминающих данный канал
+                "posts_count": 53500,                # Общее количество неудаленных публикаций в канале
+            }
+        }
+
+        result = tgs.get_result(data, enums.ChannelsRequests.STAT)
+        self.assertIsInstance(result, classes.ChannelStatistic)
+
+
+        data = {
+            "status": "ok",
+            "response": {
+                "count": 50,
+                "total_count": 8007,
+                "channel": {
+                    "id": 7377,
+                    "link": "t.me/breakingmash",
+                    "username": "@breakingmash",
+                    "title": "Mash",
+                    "about": "Помахаться и обсудить новости - @mash_chat ...",
+                    "image100": "//static2.tgstat.com/public/images/channels/_100/a7/a76c0abe2b7b1b79e70f0073f43c3b44.jpg",
+                    "image640": "//static2.tgstat.com/public/images/channels/_0/a7/a76c0abe2b7b1b79e70f0073f43c3b44.jpg",
+                    "participants_count": 431868
+                },
+                "items": [
+                    {
+                        "id": 3598980241,
+                        "date": 1540123429,
+                        "views": 148382,
+                        "link": "t.me/breakingmash/8419",
+                        "channel_id": 7377,
+                        "forwarded_from": None,
+                        "is_deleted": 0,
+                        "text": "В Твери заправщик принял лишнего и решил, ...",
+                        "media": {
+                            "media_type": "mediaDocument",
+                            "mime_type": "video/mp4",
+                            "size": 5085138
+                        }
+                    },
+                ]
+            }
+        }
+
+        result = tgs.get_result(data, enums.ChannelsRequests.POSTS)
+        self.assertIsInstance(result, classes.MassiveResult)
+
+        
+        data = {
+            "status": "ok",
+            "response": {
+                "count": 8,
+                "total_count": 10,        
+                "channel": {
+                    "id": 7377,
+                    "tg_id": 1036240821,
+                    "link": "t.me/meduzalive",
+                    "peer_type": "channel",
+                    "username": "@meduzalive",
+                    "active_usernames": [
+                        "@meduzalive"
+                    ],
+                    "title": "Медуза — LIVE",
+                    "about": "Главный телеграм-канал «Медузы». Для связи: @meduzalovesyou\n\nПриложение для iOS https://mdza.io/JtSJ9t50Ww4\nИ для Android https://mdza.io/IQkzDh0RHw4\n\nРассылка Signal в телеграме: @meduzasignal",
+                    "category": "Новости и СМИ",
+                    "country": "Россия",
+                    "language": "Русский",
+                    "image100": "//static10.tgstat.ru/channels/_100/ad/ad61ab143223efbc24c7d2583be69251.jpg",
+                    "image640": "//static1.tgstat.ru/channels/_0/ad/ad61ab143223efbc24c7d2583be69251.jpg",
+                    "participants_count": 1211062,
+                    "tgstat_restrictions": []
+                },
+                "items": [
+                    {
+                        "id": 2,
+                        "date": 1696843128,
+                        "views": 23483,
+                        "link": "t.me/meduzalive/s/18",
+                        "channel_id": 74,
+                        "is_expired": 1,
+                        "expire_at": 1697015928,
+                        "caption": "Мой первый день преподавателя)",
+                        "media": {
+                            "file_size": 9184495,
+                            "file_url": "https://static23.tgcnt.ru/stories/_0/32/321b22809d2f98d3c7d7cd08154aaeda.mp4",
+                            "file_thumbnail_url": "https://static20.tgcnt.ru/stories/_720/d7/d726d7f5e89acf67d01e4a98afcd9f1e.jpg"
+                        }
+                    },
+                ]
+            }
+        }
+
+
+        result = tgs.get_result(data, enums.ChannelsRequests.STORIES)
+        self.assertIsInstance(result, classes.MassiveResult)
+
+
+        data = {
+            "status": "ok",
+            "response": {
+                "items": [
+                    {
+                        "mentionId": 48258272,
+                        "mentionType": "channel",
+                        "postId": 4375814870,
+                        "postLink": "https://t.me/Heath_Ledger_media/51932",
+                        "postDate": 1543487975,
+                        "channelId": 197080
+                    },
+                    {
+                        "mentionId": 48254456,
+                        "mentionType": "channel",
+                        "postId": 4375344988,
+                        "postLink": "https://t.me/zradaperemoga/2865",
+                        "postDate": 1543487209,
+                        "channelId": 79853
+                    }
+                ],
+                "channels": [
+                    {
+                        "id": 79853,
+                        "link": "t.me/zradaperemoga",
+                        "username": "@zradaperemoga",
+                        "title": "Зрада чи Перемога",
+                        "about": "Реальные новости из украинского зазеркалья. Телеграмируем из матери городов русских (Киев - не без ватников).\nДля связи: zperemoga78@mail.ru",
+                        "image100": "//static2.tgstat.com/public/images/channels/_100/ac/ac2c1fd09bc875e9e64d78c947c38128.jpg",
+                        "image640": "//static2.tgstat.com/public/images/channels/_0/ac/ac2c1fd09bc875e9e64d78c947c38128.jpg",
+                        "participants_count": 12921
+                    },
+                    {
+                        "id": 197080,
+                        "link": "t.me/Heath_Ledger_media",
+                        "username": "@Heath_Ledger_media",
+                        "title": "Хит Леджер",
+                        "about": "Новости, которые мы заслужили.\nВсе самое свежее про вільну і незалежну тут!\nДля связи - @nika_toy",
+                        "image100": "//static2.tgstat.com/public/images/channels/_100/97/97f0a0d896218504dc12fc312a433fe0.jpg",
+                        "image640": "//static2.tgstat.com/public/images/channels/_0/97/97f0a0d896218504dc12fc312a433fe0.jpg",
+                        "participants_count": 3306
+                    },
+                    
+                ]
+            }
+        }
+
+
+        result = tgs.get_result(data, enums.ChannelsRequests.MENTIONS)
+        self.assertIsInstance(result, classes.MassiveResult)
+
+        data = {
+            "status": "ok",
+            "response": {
+                "items": [
+                    {
+                        "forwardId": 29244863,
+                        "sourcePostId": 29470001798,
+                        "postId": 4221534307,
+                        "postLink": "https://t.me/telebrend/429",
+                        "postDate": 1542823702,
+                        "channelId": 217945
+                    },
+                    {
+                        "forwardId": 28132523,
+                        "sourcePostId": 29464481491,
+                        "postId": 4128289212,
+                        "postLink": "https://t.me/telepulse/289",
+                        "postDate": 1542451613,
+                        "channelId": 194251
+                    }
+                ],
+                "channels": [
+                    {
+                        "id": 194251,
+                        "link": "t.me/telepulse",
+                        "username": "@telepulse",
+                        "title": "Пульс Telegram",
+                        "about": "Самые интересные события, происходящие в Telegram. \n\n▫️Каналы, стремительно набирающие популярность;\n▫️Сводки по самым популярным и цитируемым публикациям за день;\n▫️Тренды недели - все здесь!\n\nДержи руку на пульсе!",
+                        "image100": "//static.tgstat.ru/public/images/channels/_100/76/764b7b71a9162b27d30a1750e17230c4.jpg",
+                        "image640": "//static.tgstat.ru/public/images/channels/_0/76/764b7b71a9162b27d30a1750e17230c4.jpg",
+                        "participants_count": 498
+                    },
+                    {
+                        "id": 217945,
+                        "link": "t.me/telebrend",
+                        "username": "@telebrend",
+                        "title": "Телеграм БРЕНД 🔝",
+                        "about": "Продвижение и заработок в Telegram\n😊 Новичкам 😎 Средним 😜 Профи\n\n📌 Запись на консультацию https://t.me/telebrend/241\n\n✅ По вопросам сотрудничества \nи рекламе @reklama_dengi\n\nБот-автоответчик 🤖 @telebrend_bot",
+                        "image100": "//static.tgstat.ru/public/images/channels/_100/e8/e8acde5aeadc76bab05dc26544259d2a.jpg",
+                        "image640": "//static.tgstat.ru/public/images/channels/_0/e8/e8acde5aeadc76bab05dc26544259d2a.jpg",
+                        "participants_count": 172
+                    }
+                ]
+            }
+        }
+
+
+        result = tgs.get_result(data, enums.ChannelsRequests.FORWARDS)
+        self.assertIsInstance(result, classes.MassiveResult)
+
     
     def test_dynamic_info(self):
         tgs = tg_stat.TGStatSync(environ.get("0000"), tests=True)
-        dynamic_data = tgs.get_result("", enums.ChannelsRequests.SUBSCRIBERS)
+        data = {
+            "status": "ok",
+            "response": [
+                {
+                    "period": "2020-03-11 10:00",           # 11 марта 2020, 10:00
+                    "participants_count": 1518              # кол-во подписчиков по состоянию на 10:00 11 марта 2020
+                },
+                {
+                    "period": "2020-03-11 09:00",
+                    "participants_count": 1407
+                },
+                {
+                    "period": "2020-03-11 08:00",
+                    "participants_count": 1391
+                },
+                {
+                    "period": "2020-03-11 07:00",
+                    "participants_count": 1370
+                },
+                {
+                    "period": "2020-03-11 06:00",
+                    "participants_count": 1338
+                },
+                ...
+            ]
+        }
+        dynamic_data = tgs.get_result(data, enums.ChannelsRequests.SUBSCRIBERS)
         self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
-        dynamic_data = tgs.get_result("", enums.ChannelsRequests.SUBSCRIBERS)
-        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
-        dynamic_data = tgs.get_result("", enums.ChannelsRequests.SUBSCRIBERS)
-        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
-        dynamic_data = tgs.get_result("", enums.ChannelsRequests.SUBSCRIBERS)
-        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
-        dynamic_data = tgs.get_result("", enums.ChannelsRequests.SUBSCRIBERS)
-        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
-        dynamic_data = tgs.get_result("", enums.ChannelsRequests.SUBSCRIBERS)
-        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
+
+        data = {
+            "status": "ok",
+            "response": [
+                {
+                    "period": "2018-11-04",             # 4 ноября 2018
+                    "views_count": 3985                 # суммарное кол-во просмотров, совершенных 4 ноября 2018 до 23:59
+                },
+                {
+                    "period": "2018-11-03",
+                    "views_count": 4010
+                },
+                {
+                    "period": "2018-11-02",
+                    "views_count": 2381
+                },
+            ]
+        }
+        dynamic_data = tgs.get_result(data, enums.ChannelsRequests.VIEWS)
+        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels VIEWS not DynamicData class")
+
+        data={
+            "status": "ok",
+            "response": [
+                {
+                    "period": "2021-11-26",
+                    "avg_posts_reach": 6017
+                },
+                {
+                    "period": "2021-11-25",
+                    "avg_posts_reach": 5875
+                },
+                {
+                    "period": "2021-11-24",
+                    "avg_posts_reach": 5738
+                },
+            ]
+        }
+        dynamic_data = tgs.get_result(data, enums.ChannelsRequests.AVG_POSTS_REACH)
+        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels AVG_POSTS_REACH not DynamicData class")
+
+        data={
+            "status": "ok",
+            "response": [
+                {
+                    "period": "2021-11-26",
+                    "er": 41
+                },
+                {
+                    "period": "2021-11-25",
+                    "er": 41.4
+                },
+                {
+                    "period": "2021-11-24",
+                    "er": 40.9
+                },
+            ]
+        }
+        dynamic_data = tgs.get_result(data, enums.ChannelsRequests.ER)
+        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels ER not DynamicData class")
+
+        data = {
+            "status": "ok",
+            "response": [
+                {
+                    "period": "2021-11-26",
+                    "err": 41
+                },
+                {
+                    "period": "2021-11-25",
+                    "err": 41.4
+                },
+                {
+                    "period": "2021-11-24",
+                    "err": 40.9
+                },
+            ]
+        }
+        dynamic_data = tgs.get_result(data, enums.ChannelsRequests.ERR)
+        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels ERR not DynamicData class")
+
+        data = {
+            "status": "ok",
+            "response": [
+                {
+                    "period": "2021-11-26",
+                    "err24": 41
+                },
+                {
+                    "period": "2021-11-25",
+                    "err24": 41.4
+                },
+                {
+                    "period": "2021-11-24",
+                    "err24": 40.9
+                },
+            ]
+        }
+        dynamic_data = tgs.get_result(data, enums.ChannelsRequests.ERR24)
+        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels ERR24 not DynamicData class")
         
         
