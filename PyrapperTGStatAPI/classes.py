@@ -210,10 +210,10 @@ class MassiveResult:
                 self.items = [Story(**story) for story in items]
             
             elif ResultsType.MENTIONS:
-                self.items = [Mention(**mention)]
+                self.items = [Mention(**mention) for mention in items]
 
             elif ResultsType.FORWARDS:
-                self.items = [Forward(**fr)]
+                self.items = [Forward(**fr) for fr in items]
 
         if channels:
             self.channels = [Channel(**chan) for chan in channels]
