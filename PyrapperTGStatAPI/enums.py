@@ -2,8 +2,8 @@ from enum import Enum
 
 
 class RequestsMethods(Enum):
-    GET = 1
-    POST = 2
+    GET = "GET"
+    POST = "POST"
 
 
 class RequestsCategory(Enum):
@@ -60,7 +60,7 @@ class CallbackRequests(Enum):
     UNSUBSCRIBE = ("unsubscribe", RequestsMethods.POST)
 
 
-class UsageRequests(Enums):
+class UsageRequests(Enum):
     STAT = ("stat", RequestsMethods.GET)
 
 
@@ -82,6 +82,30 @@ class MediaTypes(Enum):
 
 
 class DatabaseTypes(Enum):
-    categories = "categories"
-    countries = "countries"
-    languages = "languages"
+    CATEGORIES = "categories"
+    COUNTRIES = "countries"
+    LANGUAGES = "languages"
+
+
+class DynamicType(Enum):
+    SUBSCRIBERS = 1
+    VIEWS = 2
+    AVG_POSTS_REACH = 3
+    ER = 4
+    ERR = 5
+    ERR24 = 6
+    MENTIONS_BY_PERIOD = 7
+
+
+class ResultsType(Enum):
+    POST = 1
+    STORIES = 2
+    MENTIONS = 3
+    MENTIONS_CHANNEL = 6
+    FORWARDS = 4
+    CHANNELS = 5
+
+class ReturnTypes(Enum):
+    OBJECT = 1
+    LIST = 2
+    
