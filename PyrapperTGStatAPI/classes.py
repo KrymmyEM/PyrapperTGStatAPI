@@ -1,4 +1,4 @@
-from .enums import DatabaseTypes, ResultsType
+from enums import DatabaseTypes, ResultsType
 
 
 class Channel:
