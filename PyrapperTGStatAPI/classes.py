@@ -157,7 +157,7 @@ class View:
         self.viewsGrowth = viewsGrowth
 
 
-class PostGroupStatistic:
+class GroupStatistic:
     def __init__(self, viewsCount, sharesCount, commentsCount, reactionsCount, forwardsCount, mentionsCount, forwards, mentions, views):
         self.viewsCount = viewsCount
         self.sharesCount = sharesCount
