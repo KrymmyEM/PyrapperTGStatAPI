@@ -29,8 +29,33 @@ class TGStatSyncTest(unittest.TestCase):
     
     def test_get_channel_info(self):
         tgs = tg_stat.TGStatSync(environ.get("0000"), tests=True)
-        dynamic_data = tgs.get_result("", enums.ChannelsRequests.SUBSCRIBERS)
-        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
+        data = {
+            "status": "ok",
+            "response": {
+                "id": 321,
+                "link": "t.me/varlamov",
+                "peer_type": "channel",
+                "username": "@varlamov",
+                "active_usernames": [
+                    "@varlamov"
+                ],
+                "title": "Varlamov.ru",
+                "about": "Илья Варламов. Make Russia warm again! ...",
+                "category": "Блоги",
+                "country": "Россия",
+                "language": "Русский",
+                "image100": "//static.tgstat.ru/public/images/channels/_100/ca/caf1a3dfb505ffed0d024130f58c5cfa.jpg",
+                "image640": "//static.tgstat.ru/public/images/channels/_0/ca/caf1a3dfb505ffed0d024130f58c5cfa.jpg",
+                "participants_count": 154800,
+                "tgstat_restrictions": {      # ограничения, наложенные на канал (если ограничений нет - будет возвращен пустой массив)
+                    "red_label": True,        # канал помечен красной меткой (за накрутку) на TGStat.ru
+                    "black_label": True,      # канал помечен черной меткой (за мошенничество) на TGStat.ru
+                }
+            }
+        }
+
+        result = tgs.get_result(data, enums.ChannelsRequests.GET)
+        self.assertIsInstance(dynamic_data, classes.Channel, "Channel result not a Channel type")
     
     
     def test_dynamic_info(self):
