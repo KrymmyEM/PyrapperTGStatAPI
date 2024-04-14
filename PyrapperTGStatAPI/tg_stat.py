@@ -112,7 +112,17 @@ class TGStatSync:
             ChannelsRequests.GET, ChannelsRequests.STAT, PostsRequests.GET,
             PostsRequests.STAT, StoriesRequests.STAT, PostsRequests.STAT_MULTI,
             StoriesRequests.STAT_MULTI]:
-            pass
+            
+            objects_dict = {
+                ChannelsRequests.GET: Channel,
+                PostsRequests.GET: Post,
+                StoriesRequests.GET: Story,
+                ChannelsRequests.STAT: ChannelStatistic,
+                PostsRequests.STAT: GroupStatistic,
+                StoriesRequests.STAT: GroupStatistic,
+                PostsRequests.STAT_MULTI: UnionStatistic,
+                StoriesRequests.STAT_MULTI: UnionStatistic
+            }
         
         if return_type.OBJECT:
             return class_parser(**kwargs)
