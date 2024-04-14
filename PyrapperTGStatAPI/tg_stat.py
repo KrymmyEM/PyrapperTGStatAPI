@@ -148,7 +148,7 @@ class TGStatSync:
                 
         self._check_catgory(None, sub_category)
 
-        return self._build_result(data, category, sub_category)
+        return self._build_result(data, sub_category)
 
 
     def api(self, category: RequestsCategory, 
@@ -164,7 +164,7 @@ class TGStatSync:
         last_postfix, method = sub_category.value
         sending_url = self.base_url + "/" + first_postfix + "/" + last_postfix
         response = self._send_request(method, sending_url, **kwargs)
-        result = self._build_result(response, category)
+        result = self._build_result(response, sub_category)
 
         return result
 
