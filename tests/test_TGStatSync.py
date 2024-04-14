@@ -700,7 +700,7 @@ class TGStatSyncTest(unittest.TestCase):
                 }
             ]
         }
-        result = tgs.get_result(data, sub_category=enums.PostsRequests.STAT)
+        result = tgs.get_result(data, sub_category=enums.StoriesRequests.STAT_MULTI)
         self.assertIsInstance(result, classes.UnionStatistic)
 
 
