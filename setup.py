@@ -14,7 +14,7 @@ with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name = "PyrapperTGStatAPI",
+    name = "krypper_tgstat",
     version = version,
     description = "Wrapper for TG Stat API writing on Python\nTGStat (https://tgstat.ru API wrapper)",
     long_description = long_description,
@@ -25,7 +25,7 @@ setup(
     download_url = "https://github.com/KrymmyEM/PyrapperTGStatAPI/archive/main.zip",
 
     license = "MIT License. See LICENSE file",
-    packages = ["PyrapperTGStatAPI"],
+    packages = ["krypper_tgstat"],
     install_requires=[
         "requests",
         "aiohttp"
