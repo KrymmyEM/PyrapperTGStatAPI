@@ -108,6 +108,12 @@ class TGStatSync:
 
             return_type = ReturnTypes.LIST 
         
+        elif sub_category in [
+            ChannelsRequests.GET, ChannelsRequests.STAT, PostsRequests.GET,
+            PostsRequests.STAT, StoriesRequests.STAT, PostsRequests.STAT_MULTI,
+            StoriesRequests.STAT_MULTI]:
+            pass
+        
         if return_type.OBJECT:
             return class_parser(**kwargs)
 
