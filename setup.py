@@ -10,7 +10,7 @@ version = "0.1.5"
 
 long_decription = ""
 
-with open("README.md", "w", encoding="utf-8") as f:
+with open("README.md", "r", encoding="utf-8") as f:
     long_decription = f.read()
 
 setup(
