@@ -143,8 +143,11 @@ class Post:
 
 
 class UnionStatistic:
-    def __init__(self, postId, viewsCount, sharesCount, reactionsCount, commentsCount=0):
-        self.postId = postId
+    def __init__(self, viewsCount, sharesCount, reactionsCount, commentsCount=0, postId=0, storyId=0):
+        if postId:
+            self.postId = postId
+        if storyId:
+            self.storyId = storyId
         self.viewsCount = viewsCount
         self.sharesCount = sharesCount
         self.commentsCount = commentsCount
