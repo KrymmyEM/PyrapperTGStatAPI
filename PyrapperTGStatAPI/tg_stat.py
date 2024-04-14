@@ -3,9 +3,9 @@ import json
 from requests import Request, Session
 from aiohttp import ClientSession
 
-from .enums import *
-from .classes import *
-from .exceptions import * 
+from enums import *
+from classes import *
+from exceptions import * 
 
 
 class TGStatSync:

@@ -60,7 +60,7 @@ class CallbackRequests(Enum):
     UNSUBSCRIBE = ("unsubscribe", RequestsMethods.POST)
 
 
-class UsageRequests(Enums):
+class UsageRequests(Enum):
     STAT = ("stat", RequestsMethods.GET)
 
 
