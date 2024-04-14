@@ -94,6 +94,7 @@ class DynamicType(Enum):
     ER = 4
     ERR = 5
     ERR24 = 6
+    MENTIONS_BY_PERIOD = 7
 
 
 class ResultsType(Enum):
