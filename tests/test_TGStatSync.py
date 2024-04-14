@@ -791,3 +791,6 @@ class TGStatSyncTest(unittest.TestCase):
         }
         result = tgs.get_result(data, sub_category=enums.WordsRequests.MENTIONS_BY_CHANNELS)
         self.assertIsInstance(result, classes.MassiveResult)
+
+if __name__ == '__main__':
+    unittest.main()
