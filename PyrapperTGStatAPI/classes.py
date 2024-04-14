@@ -142,8 +142,8 @@ class Post:
             self.media = Media(**media)
 
 
-class PostStatistic:
-    def __init__(self, postId, viewsCount, sharesCount, commentsCount, reactionsCount):
+class UnionStatistic:
+    def __init__(self, postId, viewsCount, sharesCount, reactionsCount, commentsCount=0):
         self.postId = postId
         self.viewsCount = viewsCount
         self.sharesCount = sharesCount
