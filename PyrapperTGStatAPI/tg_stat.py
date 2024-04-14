@@ -52,6 +52,26 @@ class TGStatSync:
                             ChannelsRequests.MENTIONS, ChannelsRequests.FORWARDS, PostsRequests.SEARCH,
                             PostsRequests.STAT]:
             class_parser = MassiveResult
+            
+            result_type = None
+
+            if sub_category in [ChannelsRequests.SEARCH]:
+                pass
+
+            elif sub_category in [ChannelsRequests.POSTS, PostsRequests.SEARCH]:
+                pass
+
+            elif sub_category in [ChannelsRequests.STORIES]:
+                pass
+
+            elif sub_category in [ChannelsRequests.FORWARDS]:
+                pass
+            
+            elif sub_category in [ChannelsRequests.MENTIONS, WordsRequests.MENTIONS_BY_CHANNELS]:
+                pass
+                
+            else:
+                raise TGStatException("Unsupported Enum")
         
         return data["response"]
 
