@@ -28,7 +28,7 @@ class TGStatSync:
     
     
     def _check_catgory(self, category, sub_category):
-        if not isinstance(category, RequestsCategory):
+        if category and not isinstance(category, RequestsCategory):
             raise TGStatTypeError(type(category), type(RequestsCategory), category._name_)
         
         if not type(sub_category) in [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
@@ -43,7 +43,7 @@ class TGStatSync:
                     ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ]):
-        self._check_catgory(category, sub_category)
+        self._check_catgory(None, sub_category)
 
         if isinstance(data, str):
             try:
@@ -146,7 +146,7 @@ class TGStatSync:
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ]):
                 
-        self._check_catgory(category, sub_category)
+        self._check_catgory(None, sub_category)
 
         return self._build_result(data, category, sub_category)
 
