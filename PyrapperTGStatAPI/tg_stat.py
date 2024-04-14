@@ -47,7 +47,11 @@ class TGStatSync:
         if data['status'] == "error":
             raise TGStatAPIError(data["error"])
         
-
+        class_parser = None
+        if sub_category in [ChannelsRequests.SEARCH, ChannelsRequests.POSTS, ChannelsRequests.STORIES,
+                            ChannelsRequests.MENTIONS, ChannelsRequests.FORWARDS, PostsRequests.SEARCH,
+                            PostsRequests.STAT]:
+            class_parser = MassiveResult
         
         return data["response"]
 
