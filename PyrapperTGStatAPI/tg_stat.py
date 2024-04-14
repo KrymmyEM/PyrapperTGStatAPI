@@ -63,25 +63,24 @@ class TGStatSync:
             
             key = "result_type"
 
-            if sub_category in [ChannelsRequests.SEARCH]:
-                kwargs[key] = ResultsType.CHANNELS
+            data = {
+                ChannelsRequests.SEARCH: ResultsType.CHANNELS,
+                ChannelsRequests.POSTS: ResultsType.POST, 
+                PostsRequests.SEARCH: ResultsType.POST,
+                ChannelsRequests.STORIES: ResultsType.STORIES,
+                ChannelsRequests.FORWARDS: ResultsType.FORWARDS,
+                ChannelsRequests.MENTIONS:ResultsType.MENTIONS, 
+                WordsRequests.MENTIONS_BY_CHANNELS:ResultsType.MENTIONS
+            }
 
-            elif sub_category in [ChannelsRequests.POSTS, PostsRequests.SEARCH]:
-                kwargs[key] = ResultsType.POST
-
-            elif sub_category in [ChannelsRequests.STORIES]:
-                kwargs[key] = ResultsType.STORIES
-
-            elif sub_category in [ChannelsRequests.FORWARDS]:
-                kwargs[key] = ResultsType.FORWARDS
-            
-            elif sub_category in [ChannelsRequests.MENTIONS, WordsRequests.MENTIONS_BY_CHANNELS]:
-                kwargs[key] = ResultsType.MENTIONS
-                
-            else:
+            try:
+                kwargs[key] = data[sub_category]
+            except:
                 raise TGStatException("Unsupported Enum")
+            
+            kwargs.update(data["response"])
         
-        return data["response"]
+        return class_parser(**kwargs)
 
 
     def get_result(self, data, sub_category: Optional[
