@@ -88,7 +88,11 @@ class TGStatSync:
                             ]:
             pass
         
-        return class_parser(**kwargs)
+        if return_type.OBJECT:
+            return class_parser(**kwargs)
+
+        elif return_type.LIST:
+            ...
 
 
     def get_result(self, data, sub_category: Optional[
