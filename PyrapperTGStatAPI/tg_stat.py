@@ -86,7 +86,27 @@ class TGStatSync:
                                 ChannelsRequests.ER, ChannelsRequests.ERR, ChannelsRequests.ERR24,
                                 WordsRequests.MENTIONS_BY_PERIOD
                             ]:
-            pass
+
+            class_parser = DynamicData
+            
+            key = "dynamic_type"
+
+            data = {
+                ChannelsRequests.SUBSCRIBERS: DynamicType.SUBSCRIBERS,
+                ChannelsRequests.VIEWS: DynamicType.VIEWS,
+                ChannelsRequests.AVG_POSTS_REACH: DynamicType.AVG_POSTS_REACH,
+                ChannelsRequests.ER: DynamicType.ER,
+                ChannelsRequests.ERR: DynamicType.ERR,
+                ChannelsRequests.ERR24: DynamicType.ERR24,
+                WordsRequests.MENTIONS_BY_PERIOD: DynamicType.MENTIONS_BY_PERIOD,
+            }
+
+            try:
+                kwargs[key] = data[sub_category]
+            except:
+                raise TGStatException("Unsupported Enum")
+
+            return_type = ReturnTypes.LIST 
         
         if return_type.OBJECT:
             return class_parser(**kwargs)
