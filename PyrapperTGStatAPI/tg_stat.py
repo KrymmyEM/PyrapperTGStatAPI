@@ -80,6 +80,13 @@ class TGStatSync:
             
             kwargs.update(data["response"])
         
+        elif sub_category in [
+                                ChannelsRequests.SUBSCRIBERS, ChannelsRequests.VIEWS, ChannelsRequests.AVG_POSTS_REACH,
+                                ChannelsRequests.ER, ChannelsRequests.ERR, ChannelsRequests.ERR24,
+                                WordsRequests.MENTIONS_BY_PERIOD
+                            ]:
+            pass
+        
         return class_parser(**kwargs)
 
 
