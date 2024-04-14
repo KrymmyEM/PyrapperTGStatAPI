@@ -101,4 +101,5 @@ class ResultsType(Enum):
     STORIES = 2
     MENTIONS = 3
     FORWARDS = 4
+    CHANNELS = 5
     
