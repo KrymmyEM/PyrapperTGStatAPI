@@ -108,10 +108,9 @@ class TGStatSync:
 
             return_type = ReturnTypes.LIST 
         
-        elif sub_category in [
-            ChannelsRequests.GET, ChannelsRequests.STAT, PostsRequests.GET,
-            PostsRequests.STAT, StoriesRequests.STAT, PostsRequests.STAT_MULTI,
-            StoriesRequests.STAT_MULTI]:
+        elif sub_category in [ChannelsRequests.GET, PostsRequests.GET, StoriesRequests.GET,
+            ChannelsRequests.STAT, PostsRequests.STAT, StoriesRequests.STAT, 
+            PostsRequests.STAT_MULTI, StoriesRequests.STAT_MULTI]:
             
             objects_dict = {
                 ChannelsRequests.GET: Channel,
