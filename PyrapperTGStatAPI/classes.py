@@ -217,3 +217,12 @@ class MassiveResult:
 
         if channels:
             self.channels = [Channel(**chan) for chan in channels]
+
+
+class DynamicData:
+    def __init__(self, dynamic_type, period, **kwargs):
+        self.dynamic_type = dynamic_type
+        self.period = period
+
+        for key, value in kwargs.items():
+            setattr(self, key, value)
