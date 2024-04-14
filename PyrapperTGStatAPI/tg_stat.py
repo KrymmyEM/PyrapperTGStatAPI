@@ -122,6 +122,13 @@ class TGStatSync:
                 PostsRequests.STAT_MULTI: UnionStatistic,
                 StoriesRequests.STAT_MULTI: UnionStatistic
             }
+
+            try:
+                class_parser = objects_dict[sub_category]
+            except:
+                raise TGStatException("Unsupported Enum")
+            
+            kwargs.update(data["response"])
         
         if return_type.OBJECT:
             return class_parser(**kwargs)
