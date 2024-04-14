@@ -142,7 +142,12 @@ class Post:
             self.media = Media(**media)
 
 
-class 
+class MentionChannel:
+    def __init__(self, channel_id, mentions_count, views_count, last_mention_date):
+        self.channel_id = channel_id
+        self.mentions_count = mentions_count
+        self.views_count = views_count
+        self.last_mention_date
 
 
 class UnionStatistic:
