@@ -1,4 +1,5 @@
 from typing import Optional
+import json
 from requests import Request, Session
 from aiohttp import ClientSession
 
@@ -43,6 +44,12 @@ class TGStatSync:
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ]):
         self._check_catgory(category, sub_category)
+
+        if isinstance(data, str):
+            try:
+                data = json.loads(data)
+            except:
+                raise TGStatException("Incorrect data value")
 
         if data['status'] == "error":
             raise TGStatAPIError(data["error"])
