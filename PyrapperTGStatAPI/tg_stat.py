@@ -112,7 +112,9 @@ class TGStatSync:
             return class_parser(**kwargs)
 
         elif return_type.LIST:
-            ...
+            return_datas = []
+            for temp_data in data["response"]:
+                return_datas.append(class_parser(**kwargs, **temp_data))
 
 
     def get_result(self, data, sub_category: Optional[
