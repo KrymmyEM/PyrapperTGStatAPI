@@ -30,4 +30,20 @@ class TGStatSyncTest(unittest.TestCase):
     def test_get_channel_info(self):
         tgs = tg_stat.TGStatSync(environ.get("TOKEN"))
         self.assertIsInstance(tgs.api(enums.RequestsCategory.CHANNELS, enums.ChannelsRequests.GET, channelId="https://t.me/aiogram_pcr"), classes.Channel)
+    
+    def test_dynamic_info(self):
+        tgs = tg_stat.TGStatSync(environ.get("TOKEN"))
+        dynamic_data = tgs.api(enums.RequestsCategory.CHANNELS, enums.ChannelsRequests.SUBSCRIBERS, channelId="https://t.me/aiogram_pcr")
+        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
+        dynamic_data = tgs.api(enums.RequestsCategory.CHANNELS, enums.ChannelsRequests.VIEWS, channelId="https://t.me/aiogram_pcr")
+        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
+        dynamic_data = tgs.api(enums.RequestsCategory.CHANNELS, enums.ChannelsRequests.AVG_POSTS_REACH, channelId="https://t.me/aiogram_pcr")
+        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
+        dynamic_data = tgs.api(enums.RequestsCategory.CHANNELS, enums.ChannelsRequests.ER, channelId="https://t.me/aiogram_pcr")
+        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
+        dynamic_data = tgs.api(enums.RequestsCategory.CHANNELS, enums.ChannelsRequests.ERR, channelId="https://t.me/aiogram_pcr")
+        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
+        dynamic_data = tgs.api(enums.RequestsCategory.CHANNELS, enums.ChannelsRequests.ERR24, channelId="https://t.me/aiogram_pcr")
+        self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels SUBSCRIBERS not DynamicData class")
+        
         
