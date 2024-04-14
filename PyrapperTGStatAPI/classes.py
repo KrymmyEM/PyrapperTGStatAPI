@@ -147,7 +147,7 @@ class MentionChannel:
         self.channel_id = channel_id
         self.mentions_count = mentions_count
         self.views_count = views_count
-        self.last_mention_date
+        self.last_mention_date = last_mention_date
 
 
 class UnionStatistic:
