@@ -2,7 +2,10 @@ from os import environ
 import unittest
 
 from dotenv import load_dotenv
-from .. import classes, enums, exceptions, tg_stat
+import classes
+import enums
+import exceptions
+import tg_stat
 
 load_dotenv()
 
