@@ -59,7 +59,7 @@ class TGStatSync:
         return_type = ReturnTypes.OBJECT
         if sub_category in [ChannelsRequests.SEARCH, ChannelsRequests.POSTS, ChannelsRequests.STORIES,
                             ChannelsRequests.MENTIONS, ChannelsRequests.FORWARDS, PostsRequests.SEARCH,
-                            PostsRequests.STAT]:
+                             WordsRequests.MENTIONS_BY_CHANNELS]:
             class_parser = MassiveResult
             
             key = "result_type"
@@ -71,7 +71,7 @@ class TGStatSync:
                 ChannelsRequests.STORIES: ResultsType.STORIES,
                 ChannelsRequests.FORWARDS: ResultsType.FORWARDS,
                 ChannelsRequests.MENTIONS:ResultsType.MENTIONS, 
-                WordsRequests.MENTIONS_BY_CHANNELS:ResultsType.MENTIONS
+                WordsRequests.MENTIONS_BY_CHANNELS:ResultsType.MENTIONS_CHANNEL
             }
 
             try:
@@ -128,15 +128,39 @@ class TGStatSync:
             except:
                 raise TGStatException("Unsupported Enum")
             
-            kwargs.update(data["response"])
+            if sub_category not in [PostsRequests.STAT_MULTI, StoriesRequests.STAT_MULTI]:
+                kwargs.update(data["response"])
+            else:
+                return_type = ReturnTypes.LIST
         
-        if return_type.OBJECT:
+        elif isinstance(sub_category, DatabaseRequests):
+            class_parser = DatabaseEntity
+
+            database_types = {
+                DatabaseRequests.CATEGORIES: DatabaseTypes.CATEGORIES,
+                DatabaseRequests.COUNTRIES: DatabaseTypes.COUNTRIES,
+                DatabaseRequests.LANGUAGES: DatabaseTypes.LANGUAGES,
+            }
+
+            try:
+                kwargs["database_type"] = database_types[sub_category]
+            except:
+                raise TGStatException("Unsupported Enum")
+            
+            return_type = ReturnTypes.LIST
+
+        
+        if return_type == ReturnTypes.OBJECT:
             return class_parser(**kwargs)
 
-        elif return_type.LIST:
+        elif return_type == ReturnTypes.LIST:
             return_datas = []
             for temp_data in data["response"]:
-                return_datas.append(class_parser(**kwargs, **temp_data))
+                if not isinstance(temp_data, str):
+                    return_datas.append(class_parser(**kwargs, **temp_data))
+                else:
+                    for temp_data_two in data["response"][temp_data]:
+                        return_datas.append(class_parser(**kwargs, **temp_data_two))
             
             return return_datas
 

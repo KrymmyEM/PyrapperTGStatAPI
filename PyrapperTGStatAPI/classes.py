@@ -3,8 +3,10 @@ from enums import DatabaseTypes, ResultsType
 
 class Channel:
     def __init__(
-            self, id, link, peer_type, username, active_usernames,
-            title, about, image100, image640, participants_count, tgstat_restrictions = None, tg_id = None
+            self, id, link, username,
+            title, about, image100, image640, participants_count, peer_type=None, 
+            active_usernames=None, tgstat_restrictions = None, tg_id = None,
+            category = None, country = None, language = None
         ):
         self.id = id
         self.tg_id = tg_id
@@ -18,6 +20,10 @@ class Channel:
         self.image640 = image640
         self.participants_count = participants_count
         self.tgstat_restrictions = tgstat_restrictions
+        self.category = None
+        self.country = None
+        self.language = None
+
 
 
 class ChannelStatistic:
@@ -58,8 +64,7 @@ class ChannelStatistic:
 
 
 class Media:
-    def __init__(self, media_type, **kwargs):
-        self.media_type = media_type
+    def __init__(self, **kwargs):
         # kwargs содержит дополнительные аргументы, которые могут быть переданы
         for key, value in kwargs.items():
             setattr(self, key, value)
@@ -97,7 +102,7 @@ class User:
 
 
 class Mention:
-    def __init__(self, mentionId, mentionType, postId, postLink, postDate, channelId):
+    def __init__(self, mentionId, mentionType, postId, postLink, postDate, channelId = None):
         self.mentionId = mentionId
         self.mentionType = mentionType
         self.postId = postId
@@ -107,21 +112,27 @@ class Mention:
 
 
 class Forward:
-    def __inint__(self, forwardId, sourcePostId, postId, postLink, channelId, peerType=None):
-        self.forwardId = forwardId
-        self.sourcePostId = sourcePostId
+    def __init__(self, postId, postLink, channelId, peerType=None, postDate=None, forwardId=0, sourcePostId=0):
+        if forwardId:
+            self.forwardId = forwardId
+        
+        if sourcePostId:
+            self.sourcePostId = sourcePostId
+
         self.postId = postId
         self.postLink = postLink
         self.channelId = channelId
         self.peerType = peerType
+        self.postDate = postDate
 
 
 class Post:
     def __init__(
-            self, id, date, views, link,
-            channel_id, forwarded_from, 
-            user_id, is_deleted, deleted_at, 
-            group_id, text, snippet, media,
+            self, id = None, date = None, views = None, link = "",
+            channel_id = None, forwarded_from = [], 
+            user_id = None, is_deleted = False, deleted_at="", 
+            group_id=None, text="", snippet="", media = [], shares_count= None,
+            comments_count = None, reactions_count = None
         ):
         self.id = id
         self.date = date
@@ -131,6 +142,7 @@ class Post:
         self.forwarded_from = None
         if forwarded_from:
             self.forwarded_from = Forward(**forwarded_from)
+
         self.user_id = user_id
         self.is_deleted = is_deleted
         self.deleted_at = deleted_at
@@ -140,6 +152,9 @@ class Post:
         self.media = None
         if media:
             self.media = Media(**media)
+
+        self.shares_count = shares_count
+        self.comments_count = comments_count
 
 
 class MentionChannel:
@@ -169,16 +184,19 @@ class View:
 
 
 class GroupStatistic:
-    def __init__(self, viewsCount, sharesCount, commentsCount, reactionsCount, forwardsCount, mentionsCount, forwards, mentions, views):
+    def __init__(self, viewsCount=None, sharesCount=None, commentsCount=None, reactionsCount=None, forwardsCount=None, mentionsCount=None, forwards=[], mentions=[], views=[]):
         self.viewsCount = viewsCount
         self.sharesCount = sharesCount
         self.commentsCount = commentsCount
         self.reactionsCount = reactionsCount
         self.forwardsCount = forwardsCount
         self.mentionsCount = mentionsCount
-        self.forwards = [Forward(**fwd) for fwd in forwards]
-        self.mentions = [Mention(**mention) for mention in mentions]
-        self.views = [View(**view) for view in views]
+        if forwards:
+            self.forwards = [Forward(**fwd) for fwd in forwards]
+        if mentions:
+            self.mentions = [Mention(**mention) for mention in mentions]
+        if views:
+            self.views = [View(**view) for view in views]
 
 
 class CallbackNotify:
@@ -197,7 +215,7 @@ class CallbackNotify:
 
 
 class DatabaseEntity:
-    def __init__(self, database_type: DatabaseTypes, code, name):
+    def __init__(self, database_type: DatabaseTypes, code=None, name=None):
         self.database_type = database_type
         self.code = code
         self.name = name
@@ -214,19 +232,22 @@ class MassiveResult:
             self.channel = Channel(**channel)
         
         if items:
-            if ResultsType.POST:
+            if result_type == ResultsType.POST :
                 self.items = [Post(**post) for post in items]
 
-            elif ResultsType.STORIES:
+            elif result_type == ResultsType.STORIES:
                 self.items = [Story(**story) for story in items]
             
-            elif ResultsType.MENTIONS:
+            elif result_type == ResultsType.MENTIONS:
                 self.items = [Mention(**mention) for mention in items]
+            
+            elif result_type == ResultsType.MENTIONS_CHANNEL:
+                self.items = [MentionChannel(**mention) for mention in items]
 
-            elif ResultsType.FORWARDS:
+            elif result_type == ResultsType.FORWARDS:
                 self.items = [Forward(**fr) for fr in items]
             
-            elif ResultsType.CHANNELS:
+            elif result_type == ResultsType.CHANNELS:
                 self.items = [Channel(**chan) for chan in items]
 
         if channels:

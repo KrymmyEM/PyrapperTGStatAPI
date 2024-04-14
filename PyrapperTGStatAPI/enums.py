@@ -101,6 +101,7 @@ class ResultsType(Enum):
     POST = 1
     STORIES = 2
     MENTIONS = 3
+    MENTIONS_CHANNEL = 6
     FORWARDS = 4
     CHANNELS = 5
 

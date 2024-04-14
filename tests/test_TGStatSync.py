@@ -9,8 +9,8 @@ load_dotenv()
 class TGStatSyncTest(unittest.TestCase):
 
     def test_token_exeptions(self):
-        self.assertRaises(exceptions.TGStatAuthError, tg_stat.TGStatSync(""))
-        self.assertRaises(exceptions.TGStatAuthError, tg_stat.TGStatSync("000"))
+        self.assertRaises(exceptions.TGStatAuthError, tg_stat.TGStatSync, "")
+        self.assertRaises(exceptions.TGStatAuthError, tg_stat.TGStatSync, "000")
 
         
     def test_get_databases(self):
@@ -18,13 +18,13 @@ class TGStatSyncTest(unittest.TestCase):
         categories = tgs.api(enums.RequestsCategory.DATABASE, enums.DatabaseRequests.CATEGORIES)
         countries = tgs.api(enums.RequestsCategory.DATABASE, enums.DatabaseRequests.COUNTRIES)
         languages = tgs.api(enums.RequestsCategory.DATABASE, enums.DatabaseRequests.LANGUAGES)
-        self.assertIsInstance(categories, classes.DatabaseEntity, "Database not return DatabaseEntity in categories")
-        self.assertIsInstance(countries, classes.DatabaseEntity, "Database not return DatabaseEntity in countries")
-        self.assertIsInstance(languages, classes.DatabaseEntity, "Database not return DatabaseEntity in languages")
+        self.assertIsInstance(categories[0], classes.DatabaseEntity, "Database not return DatabaseEntity in categories")
+        self.assertIsInstance(countries[0], classes.DatabaseEntity, "Database not return DatabaseEntity in countries")
+        self.assertIsInstance(languages[0], classes.DatabaseEntity, "Database not return DatabaseEntity in languages")
 
-        self.assertEqual(categories.database_type, enums.DatabaseTypes.CATEGORIES, f"Not correct db type in category : {categories.database_type}")
-        self.assertEqual(countries.database_type, enums.DatabaseTypes.COUNTRIES, f"Not correct db type in countries : {countries.database_type}")
-        self.assertEqual(languages.database_type, enums.DatabaseTypes.LANGUAGES, f"Not correct db type in languages : {languages.database_type}")
+        self.assertEqual(categories[0].database_type, enums.DatabaseTypes.CATEGORIES, f"Not correct db type in category : {categories[0].database_type}")
+        self.assertEqual(countries[0].database_type, enums.DatabaseTypes.COUNTRIES, f"Not correct db type in countries : {countries[0].database_type}")
+        self.assertEqual(languages[0].database_type, enums.DatabaseTypes.LANGUAGES, f"Not correct db type in languages : {languages[0].database_type}")
 
     
     def test_get_channel_info(self):
@@ -345,7 +345,6 @@ class TGStatSyncTest(unittest.TestCase):
                     "period": "2020-03-11 06:00",
                     "participants_count": 1338
                 },
-                ...
             ]
         }
         dynamic_data = tgs.get_result(data, enums.ChannelsRequests.SUBSCRIBERS)
@@ -701,7 +700,7 @@ class TGStatSyncTest(unittest.TestCase):
             ]
         }
         result = tgs.get_result(data, sub_category=enums.StoriesRequests.STAT_MULTI)
-        self.assertIsInstance(result, classes.UnionStatistic)
+        self.assertIsInstance(result[0], classes.UnionStatistic)
 
 
     def test_mentions(self):
