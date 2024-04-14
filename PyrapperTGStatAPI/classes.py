@@ -225,6 +225,9 @@ class MassiveResult:
 
             elif ResultsType.FORWARDS:
                 self.items = [Forward(**fr) for fr in items]
+            
+            elif ResultsType.CHANNELS:
+                self.items = [Channel(**chan) for chan in items]
 
         if channels:
             self.channels = [Channel(**chan) for chan in channels]
