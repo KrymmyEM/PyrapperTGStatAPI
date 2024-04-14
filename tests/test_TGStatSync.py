@@ -2,7 +2,7 @@ from os import environ
 import unittest
 
 from dotenv import load_dotenv
-from krypper_tgstat import classes, enums, exceptions, tg_stat
+from krypper_tgstat import
 
 load_dotenv()
 
