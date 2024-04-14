@@ -789,5 +789,5 @@ class TGStatSyncTest(unittest.TestCase):
                 ]
             }
         }
-        result = tgs.get_result(data, sub_category=enums.PostsRequests.STAT)
+        result = tgs.get_result(data, sub_category=enums.WordsRequests.MENTIONS_BY_CHANNELS)
         self.assertIsInstance(result, classes.MassiveResult)
