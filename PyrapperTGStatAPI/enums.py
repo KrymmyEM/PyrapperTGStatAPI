@@ -103,4 +103,8 @@ class ResultsType(Enum):
     MENTIONS = 3
     FORWARDS = 4
     CHANNELS = 5
+
+class ReturnTypes(Enum):
+    OBJECT = 1
+    LIST = 2
     
