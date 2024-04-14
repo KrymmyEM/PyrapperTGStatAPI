@@ -570,7 +570,7 @@ class TGStatSyncTest(unittest.TestCase):
             ]
         }
         result = tgs.get_result(data, sub_category=enums.PostsRequests.STAT_MULTI)
-        self.assertIsInstance(result[0], classes.PostStatistic)
+        self.assertIsInstance(result[0], classes.UnionStatistic)
 
         data = {
             "status": "ok",
@@ -701,6 +701,6 @@ class TGStatSyncTest(unittest.TestCase):
             ]
         }
         result = tgs.get_result(data, sub_category=enums.PostsRequests.STAT)
-        self.assertIsInstance(result, classes.PostStatistic)
+        self.assertIsInstance(result, classes.UnionStatistic)
 
 
