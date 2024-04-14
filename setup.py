@@ -21,8 +21,8 @@ setup(
 
     author = "Evgeny Momotov (KrymmyEM)",
     author_email = "evgeny.momotov@gmail.com",
-    url = "https://github.com/KrymmyEM/PyrapperTGStatAPI",
-    download_url = "https://github.com/KrymmyEM/PyrapperTGStatAPI/archive/main.zip",
+    url = "https://github.com/KrymmyEM/krypper_tgstat",
+    download_url = "https://github.com/KrymmyEM/krypper_tgstat/archive/main.zip",
 
     license = "MIT License. See LICENSE file",
     packages = ["krypper_tgstat"],
