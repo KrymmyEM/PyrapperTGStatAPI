@@ -56,6 +56,7 @@ class TGStatSync:
         
         class_parser = None
         kwargs = {}
+        return_type = ReturnTypes.OBJECT
         if sub_category in [ChannelsRequests.SEARCH, ChannelsRequests.POSTS, ChannelsRequests.STORIES,
                             ChannelsRequests.MENTIONS, ChannelsRequests.FORWARDS, PostsRequests.SEARCH,
                             PostsRequests.STAT]:
