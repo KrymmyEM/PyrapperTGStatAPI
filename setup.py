@@ -6,7 +6,7 @@ from setuptools import setup
 Copyright: (c) 2024 Evgeny
 """
 
-version = "0.1.0"
+version = "0.1.5"
 
 long_decription = ""
 
