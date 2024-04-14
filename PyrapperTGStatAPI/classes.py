@@ -3,8 +3,8 @@ from .enums import DatabaseTypes, ResultsType
 
 class Channel:
     def __init__(
-            self, id, tg_id, link, peer_type, username, active_usernames,
-            title, about, image100, image640, participants_count, tgstat_restrictions = None
+            self, id, link, peer_type, username, active_usernames,
+            title, about, image100, image640, participants_count, tgstat_restrictions = None, tg_id = None
         ):
         self.id = id
         self.tg_id = tg_id
