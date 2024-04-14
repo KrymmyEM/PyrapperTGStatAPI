@@ -452,3 +452,165 @@ class TGStatSyncTest(unittest.TestCase):
         self.assertIsInstance(dynamic_data[-1], classes.DynamicData, "Channels ERR24 not DynamicData class")
         
         
+    def test_posts(self):
+        null = None
+        tgs = tg_stat.TGStatSync(environ.get("0000"), tests=True)
+
+        data = {
+            "status": "ok",
+            "response": {
+                "id": 1002665528,
+                "date": 1523019187,
+                "views": 9736,
+                "link": "t.me/tg_analytics/130",
+                "channel_id": 53248,
+                "forwarded_from": null,
+                "is_deleted": 0,
+                "text": "Хотите узнать кто репостнул или поделился ссылкой на публикацию и при этом не выходить из любимого Телеграмчика — просто перешлите публикацию нашему боту @TGStat_Bot",
+                "media": {
+                    "media_type": "mediaPhoto",
+                    "caption": ""
+                }
+            }
+        }
+        result = tgs.get_result(data, sub_category=enums.PostsRequests.GET)
+        self.assertIsInstance(result, classes.Post)
+
+        data = {
+            "status": "ok",
+            "response": {
+                "viewsCount": 157210,
+                "sharesCount": 723,
+                "commentsCount": 1,
+                "reactionsCount": 7452,
+                "forwardsCount": 3,
+                "mentionsCount": 0,
+                "forwards": [
+                    {
+                        "postId": "26784773903",
+                        "postLink": "t.me/LEGION_URAL/726365",
+                        "postDate": 1659673815,
+                        "channelId": 12337001,
+                        "peerType": "chat"
+                    },
+                    {
+                        "postId": "26778706543",
+                        "postLink": "t.me/moyvictortsoy/983",
+                        "postDate": 1659645896,
+                        "channelId": 11015249,
+                        "peerType": "channel"
+                    },
+                    {
+                        "postId": "26776890651",
+                        "postLink": "t.me/p0pizdelki/453004",
+                        "postDate": 1659645701,
+                        "channelId": 4186970,
+                        "peerType": "chat"
+                    }
+                ],
+                "mentions": [],
+                "views": [
+                    {
+                        "date": "2022-08-05 00:41",
+                        "viewsGrowth": 32367
+                    },
+                    {
+                        "date": "2022-08-05 01:41",
+                        "viewsGrowth": 7566
+                    }, 
+                    {
+                        "date": "2022-08-08 07:41",
+                        "viewsGrowth": 313
+                    },
+                    {
+                        "date": "2022-08-08 08:41",
+                        "viewsGrowth": 384
+                    },
+                    {
+                        "date": "2022-08-08 09:41",
+                        "viewsGrowth": 250
+                    },
+                ]
+            }
+        }
+        result = tgs.get_result(data, sub_category=enums.PostsRequests.STAT)
+        self.assertIsInstance(result, classes.GroupStatistic)
+
+        data = {
+            "status": "ok",
+            "response": [
+                {
+                    "postId": 33322446607,
+                    "viewsCount": 10355,
+                    "sharesCount": 97,
+                    "commentsCount": 55,
+                    "reactionsCount": 130
+                },
+                {
+                    "postId": 32755689682,
+                    "viewsCount": 24846,
+                    "sharesCount": 263,
+                    "commentsCount": 95,
+                    "reactionsCount": 148
+                },
+                {
+                    "postId": 32302735720,
+                    "viewsCount": 39015,
+                    "sharesCount": 91,
+                    "commentsCount": 52,
+                    "reactionsCount": 112
+                },
+                {
+                    "postId": 32061730638,
+                    "viewsCount": 37303,
+                    "sharesCount": 95,
+                    "commentsCount": 24,
+                    "reactionsCount": 113
+                }
+            ]
+        }
+        result = tgs.get_result(data, sub_category=enums.PostsRequests.STAT_MULTI)
+        self.assertIsInstance(result[0], classes.PostStatistic)
+
+        data = {
+            "status": "ok",
+            "response": {
+                "count": 50, 
+                "total_count": 27518, 
+                "items": [ 
+                    {
+                        "id": 3584651917, 
+                        "date": 1540057519, 
+                        "views": 3139, 
+                        "shares_count": 12,
+                        "comments_count": 0,
+                        "reactions_count": 42,
+                        "link": "t.me/orfosvinstvo/6325", 
+                        "channel_id": 14069, 
+                        "forwarded_from": null,  
+                        "is_deleted": 0, 
+                        "text": "Друзья! Я уверен, что вы ведёте свои телеграм-каналы ...",
+                        "snippet": "Друзья! Я уверен, что вы ведёте свои телеграм-каналы ...", 
+                        "media": {
+                            "media_type": "mediaDocument",
+                            "mime_type": "video/mp4",
+                            "size": 5085138
+                        }
+                    },
+                ],
+                "channels": [ 
+                    {
+                        "id": 14069, 
+                        "link": "t.me/orfosvinstvo", 
+                        "username": "@orfosvinstvo", 
+                        "title": "Орфосвинство и идиомаркетинг", 
+                        "about": "Исправляем ошибки ...", 
+                        "image100": "//static.tgstat.ru/...", 
+                        "image640": "//static.tgstat.ru/...", 
+                        "participants_count": 9097
+                    },
+                ]
+            }
+        }
+        result = tgs.get_result(data, sub_category=enums.PostsRequests.SEARCH)
+        self.assertIsInstance(result, classes.MassiveResult)
