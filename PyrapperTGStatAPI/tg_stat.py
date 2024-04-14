@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Union
 import json
 from requests import Request, Session
 from aiohttp import ClientSession
@@ -39,7 +39,7 @@ class TGStatSync:
         return True
 
     
-    def _build_result(self, data, sub_category: Optional[
+    def _build_result(self, data, sub_category: Union[
                     ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ]):
@@ -141,7 +141,7 @@ class TGStatSync:
             return return_datas
 
 
-    def get_result(self, data, sub_category: Optional[
+    def get_result(self, data, sub_category: Union[
                     ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ]):
@@ -152,7 +152,7 @@ class TGStatSync:
 
 
     def api(self, category: RequestsCategory, 
-            sub_category: Optional[
+            sub_category: Union[
                     ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ], 
