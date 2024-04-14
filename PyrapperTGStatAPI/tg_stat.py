@@ -64,7 +64,7 @@ class TGStatSync:
             
             key = "result_type"
 
-            data = {
+            value_dict = {
                 ChannelsRequests.SEARCH: ResultsType.CHANNELS,
                 ChannelsRequests.POSTS: ResultsType.POST, 
                 PostsRequests.SEARCH: ResultsType.POST,
@@ -75,7 +75,7 @@ class TGStatSync:
             }
 
             try:
-                kwargs[key] = data[sub_category]
+                kwargs[key] = value_dict[sub_category]
             except:
                 raise TGStatException("Unsupported Enum")
             
@@ -91,7 +91,7 @@ class TGStatSync:
             
             key = "dynamic_type"
 
-            data = {
+            value_dict = {
                 ChannelsRequests.SUBSCRIBERS: DynamicType.SUBSCRIBERS,
                 ChannelsRequests.VIEWS: DynamicType.VIEWS,
                 ChannelsRequests.AVG_POSTS_REACH: DynamicType.AVG_POSTS_REACH,
@@ -102,7 +102,7 @@ class TGStatSync:
             }
 
             try:
-                kwargs[key] = data[sub_category]
+                kwargs[key] = value_dict[sub_category]
             except:
                 raise TGStatException("Unsupported Enum")
 
