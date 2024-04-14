@@ -614,3 +614,93 @@ class TGStatSyncTest(unittest.TestCase):
         }
         result = tgs.get_result(data, sub_category=enums.PostsRequests.SEARCH)
         self.assertIsInstance(result, classes.MassiveResult)
+
+
+    def test_stories(self):
+        null = None
+        tgs = tg_stat.TGStatSync(environ.get("0000"), tests=True)
+
+        data = {
+            "status": "ok",
+            "response": {
+                "id": 7939137,
+                "date": 1701281859,
+                "views": 218410,
+                "link": "t.me/breakingmash/s/35",
+                "channel_id": 7377,
+                "is_expired": 1,
+                "expire_at": 1701368259,
+                "caption": "Капелька новых поправок к законам в нашей сторис. Бусты как всегда по ссылке: https://t.me/breakingmash?boost",
+                "media": {
+                    "file_size": 24708968,
+                    "file_url": null,
+                    "file_thumbnail_url": "https://static25.tgcnt.ru/stories/_180/9d/9d2c28eda69a445965639cd2b1f9e4fd.jpg"
+                }
+            }
+        }
+        result = tgs.get_result(data, sub_category=enums.StoriesRequests.GET)
+        self.assertIsInstance(result, classes.Story)
+
+
+        data = {
+            "status": "ok",
+            "response": {
+                "viewsCount": 218410,
+                "forwardsCount": 130,        
+                "reactionsCount": 9953,       
+                "views": [
+                    {
+                        "date": "2023-11-29 22:17",
+                        "viewsGrowth": 28272
+                    },
+                    {
+                        "date": "2023-11-29 23:17",
+                        "viewsGrowth": 20169
+                    },
+                    {
+                        "date": "2023-11-30 00:17",
+                        "viewsGrowth": 12194
+                    },
+                    {
+                        "date": "2023-11-30 21:17",
+                        "viewsGrowth": 9099
+                    }
+                ]
+            }
+        }
+        result = tgs.get_result(data, sub_category=enums.StoriesRequests.STAT)
+        self.assertIsInstance(result, classes.GroupStatistic)
+
+        data = {
+            "status": "ok",
+            "response": [
+                {
+                    "storyId": 21176184921,
+                    "viewsCount": 1281,
+                    "sharesCount": 83,          
+                    "reactionsCount": 105
+                },
+                {
+                    "storyId": 28776184920,
+                    "viewsCount": 2729,
+                    "sharesCount": 192,            
+                    "reactionsCount": 123
+                },
+                {
+                    "storyId": 22776184919,
+                    "viewsCount": 3007,
+                    "sharesCount": 62,            
+                    "reactionsCount": 98
+                },
+                {
+                    "storyId": 26476184918,
+                    "viewsCount": 3201,
+                    "sharesCount": 74,            
+                    "reactionsCount": 85
+                }
+            ]
+        }
+        result = tgs.get_result(data, sub_category=enums.PostsRequests.STAT)
+        self.assertIsInstance(result, classes.PostStatistic)
+
+
