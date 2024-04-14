@@ -48,27 +48,28 @@ class TGStatSync:
             raise TGStatAPIError(data["error"])
         
         class_parser = None
+        kwargs = {}
         if sub_category in [ChannelsRequests.SEARCH, ChannelsRequests.POSTS, ChannelsRequests.STORIES,
                             ChannelsRequests.MENTIONS, ChannelsRequests.FORWARDS, PostsRequests.SEARCH,
                             PostsRequests.STAT]:
             class_parser = MassiveResult
             
-            result_type = None
+            key = "result_type"
 
             if sub_category in [ChannelsRequests.SEARCH]:
-                pass
+                kwargs[key]
 
             elif sub_category in [ChannelsRequests.POSTS, PostsRequests.SEARCH]:
-                pass
+                kwargs[key]
 
             elif sub_category in [ChannelsRequests.STORIES]:
-                pass
+                kwargs[key]
 
             elif sub_category in [ChannelsRequests.FORWARDS]:
-                pass
+                kwargs[key]
             
             elif sub_category in [ChannelsRequests.MENTIONS, WordsRequests.MENTIONS_BY_CHANNELS]:
-                pass
+                kwargs[key]
                 
             else:
                 raise TGStatException("Unsupported Enum")
