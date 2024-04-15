@@ -184,6 +184,19 @@ class TGStatSync:
 
         self._check_catgory(category, sub_category)
 
+        check_sub_category = {
+            RequestsCategory.CHANNELS: ChannelsRequests,
+            RequestsCategory.POSTS: PostsRequests,
+            RequestsCategory.STORIES: StoriesRequests,
+            RequestsCategory.WORDS: WordsRequests,
+            RequestsCategory.CALLBACK: CallbackRequests,
+            RequestsCategory.USAGE: UsageRequests,
+            RequestsCategory.DATABASE: DatabaseRequests,
+        }
+
+        if not isinstance(sub_category, check_sub_category[category]):
+            raise TGStatTypeError(type(sub_category), type(check_sub_category[category]), "sub_category")
+
         first_postfix = category.value
         last_postfix, method = sub_category.value
         sending_url = self.base_url + "/" + first_postfix + "/" + last_postfix
