@@ -10,4 +10,4 @@ from .exceptions import *
 from .tg_stat import TGStatSync
 
 __author__ = "KrymmyEM"
-__version__ = "0.1.7"
+__version__ = "0.1.7.1"
