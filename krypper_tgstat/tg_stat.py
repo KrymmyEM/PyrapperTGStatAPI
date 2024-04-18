@@ -27,23 +27,20 @@ class TGStatSync:
         return response.json()
     
     
-    def _check_catgory(self, category, sub_category):
-        if category and not isinstance(category, RequestsCategory):
-            raise TGStatTypeError(type(category), type(RequestsCategory), category._name_)
-        
-        if not type(sub_category) in [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
+    def _check_catgory(self, category, api_request):
+        if not type(api_request) in [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
                                         CallbackRequests, UsageRequests, DatabaseRequests]:
-            raise TGStatTypeError(type(category), [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
-                                        CallbackRequests, UsageRequests, DatabaseRequests], sub_category._name_)
+            raise TGStatTypeError(type(api_request), [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
+                                        CallbackRequests, UsageRequests, DatabaseRequests], api_request._name_)
         
         return True
 
     
-    def _build_result(self, data, sub_category: Union[
+    def _build_result(self, data, api_request: Union[
                     ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ]):
-        self._check_catgory(None, sub_category)
+        self._check_catgory(api_request)
 
         if isinstance(data, str):
             try:
@@ -57,7 +54,7 @@ class TGStatSync:
         class_parser = None
         kwargs = {}
         return_type = ReturnTypes.OBJECT
-        if sub_category in [ChannelsRequests.SEARCH, ChannelsRequests.POSTS, ChannelsRequests.STORIES,
+        if api_request in [ChannelsRequests.SEARCH, ChannelsRequests.POSTS, ChannelsRequests.STORIES,
                             ChannelsRequests.MENTIONS, ChannelsRequests.FORWARDS, PostsRequests.SEARCH,
                              WordsRequests.MENTIONS_BY_CHANNELS]:
             class_parser = MassiveResult
@@ -75,13 +72,13 @@ class TGStatSync:
             }
 
             try:
-                kwargs[key] = value_dict[sub_category]
+                kwargs[key] = value_dict[api_request]
             except:
                 raise TGStatException("Unsupported Enum")
             
             kwargs.update(data["response"])
         
-        elif sub_category in [
+        elif api_request in [
                                 ChannelsRequests.SUBSCRIBERS, ChannelsRequests.VIEWS, ChannelsRequests.AVG_POSTS_REACH,
                                 ChannelsRequests.ER, ChannelsRequests.ERR, ChannelsRequests.ERR24,
                                 WordsRequests.MENTIONS_BY_PERIOD
@@ -102,13 +99,13 @@ class TGStatSync:
             }
 
             try:
-                kwargs[key] = value_dict[sub_category]
+                kwargs[key] = value_dict[api_request]
             except:
                 raise TGStatException("Unsupported Enum")
 
             return_type = ReturnTypes.LIST 
         
-        elif sub_category in [ChannelsRequests.GET, PostsRequests.GET, StoriesRequests.GET,
+        elif api_request in [ChannelsRequests.GET, PostsRequests.GET, StoriesRequests.GET,
             ChannelsRequests.STAT, PostsRequests.STAT, StoriesRequests.STAT, 
             PostsRequests.STAT_MULTI, StoriesRequests.STAT_MULTI]:
             
@@ -124,16 +121,16 @@ class TGStatSync:
             }
 
             try:
-                class_parser = objects_dict[sub_category]
+                class_parser = objects_dict[api_request]
             except:
                 raise TGStatException("Unsupported Enum")
             
-            if sub_category not in [PostsRequests.STAT_MULTI, StoriesRequests.STAT_MULTI]:
+            if api_request not in [PostsRequests.STAT_MULTI, StoriesRequests.STAT_MULTI]:
                 kwargs.update(data["response"])
             else:
                 return_type = ReturnTypes.LIST
         
-        elif isinstance(sub_category, DatabaseRequests):
+        elif isinstance(api_request, DatabaseRequests):
             class_parser = DatabaseEntity
 
             database_types = {
@@ -143,7 +140,7 @@ class TGStatSync:
             }
 
             try:
-                kwargs["database_type"] = database_types[sub_category]
+                kwargs["database_type"] = database_types[api_request]
             except:
                 raise TGStatException("Unsupported Enum")
             
@@ -165,43 +162,45 @@ class TGStatSync:
             return return_datas
 
 
-    def get_result(self, data, sub_category: Union[
+    def get_result(self, data, api_request: Union[
                     ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ]):
                 
-        self._check_catgory(None, sub_category)
+        self._check_catgory(api_request)
 
-        return self._build_result(data, sub_category)
+        return self._build_result(data, api_request)
 
 
-    def api(self, category: RequestsCategory, 
-            sub_category: Union[
+    def api(self, api_request: Union[
                     ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
                     CallbackRequests, UsageRequests, DatabaseRequests
                 ], 
             **kwargs):
 
-        self._check_catgory(category, sub_category)
+        self._check_catgory(api_request)
 
-        check_sub_category = {
-            RequestsCategory.CHANNELS: ChannelsRequests,
-            RequestsCategory.POSTS: PostsRequests,
-            RequestsCategory.STORIES: StoriesRequests,
-            RequestsCategory.WORDS: WordsRequests,
-            RequestsCategory.CALLBACK: CallbackRequests,
-            RequestsCategory.USAGE: UsageRequests,
-            RequestsCategory.DATABASE: DatabaseRequests,
+        request_types = {
+            ChannelsRequests: RequestsCategory.CHANNELS,
+            PostsRequests: RequestsCategory.POSTS,
+            StoriesRequests: RequestsCategory.STORIES,
+            WordsRequests: RequestsCategory.WORDS,
+            CallbackRequests: RequestsCategory.CALLBACK,
+            UsageRequests: RequestsCategory.USAGE,
+            DatabaseRequests: RequestsCategory.DATABASE
         }
 
-        if not isinstance(sub_category, check_sub_category[category]):
-            raise TGStatTypeError(type(sub_category), type(check_sub_category[category]), "sub_category")
+        category = request_types.get(api_request, False)
+
+        if not category:
+            raise TGStatTypeError(type(api_request), [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
+                    CallbackRequests, UsageRequests, DatabaseRequests], "api_request")
 
         first_postfix = category.value
-        last_postfix, method = sub_category.value
+        last_postfix, method = api_request.value
         sending_url = self.base_url + "/" + first_postfix + "/" + last_postfix
         response = self._send_request(method, sending_url, **kwargs)
-        result = self._build_result(response, sub_category)
+        result = self._build_result(response, api_request)
 
         return result
 
