@@ -63,7 +63,8 @@ class ChannelStatistic:
         self.messages_count_last_week = messages_count_last_week
         self.messages_count_last_month = messages_count_last_month
         self.messages_count_total = messages_count_total
-        
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
 
 class Media:
