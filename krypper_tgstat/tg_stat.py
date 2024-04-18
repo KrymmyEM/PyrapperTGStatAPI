@@ -27,7 +27,7 @@ class TGStatSync:
         return response.json()
     
     
-    def _check_catgory(self, category, api_request):
+    def _check_catgory(self, api_request):
         if not type(api_request) in [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
                                         CallbackRequests, UsageRequests, DatabaseRequests]:
             raise TGStatTypeError(type(api_request), [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
