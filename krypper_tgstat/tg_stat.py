@@ -190,7 +190,7 @@ class TGStatSync:
             DatabaseRequests: RequestsCategory.DATABASE
         }
 
-        category = request_types.get(api_request, False)
+        category = request_types.get(type(api_request), False)
 
         if not category:
             raise TGStatTypeError(type(api_request), [ChannelsRequests, PostsRequests, StoriesRequests, WordsRequests,
